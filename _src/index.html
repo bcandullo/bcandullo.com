@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title></title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" href="img/icon.png">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+	<style>
+
+	input,
+	textarea {
+	width: 100%;
+	}
+
+	</style>
+
+</head>
+<body>
+
+	<section class="projects hidden">
+
+		<div class="project">
+			<div class="container">
+				<div class="row">
+					<div class="project-browser col-md-6">
+						<div class="project-browser-top"></div>
+						<div class="project-image"></div>
+					</div>
+					<div class="project-text col-md-5 col-md-offset-1">
+						<header class="project-header">
+							<h3 class="project-title">
+								Title of This
+							</h3>
+							<ul class="project-labels">
+								<li class="label">Label 1</li>
+								<li class="label">Label 2</li>
+								<li class="label">Label 3</li>
+							</ul>
+						</header>
+						<div class="project-details">
+							<p>
+								Website design and branding I did for a local agency. The overall style features a textured, grungy look while still remaining clean throughout.
+							</p>
+							<a href="#" class="btn btn-project">
+								View Something
+							</a>
+						</div>
+					</div><!-- /.project-text -->
+				</div>
+			</div>
+		</div><!-- /.project -->
+
+	</section><!-- /.projects -->
+
+	<section class="contact">
+
+		<header class="section-header">
+			<h2> </h2>
+		</header>
+
+		<form class="contact-form container">
+			<div class="error-message"></div>
+			<div class="row">
+				<div class="col-md-6">
+					<input type="text" class="input-name" placeholder="Name" data-type="name" value="Mike">
+				</div>
+				<div class="col-md-6">
+					<input type="email" class="input-email" placeholder="Email Address" data-type="email" value="msmith@bergen.edu">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<textarea class="input-message" placeholder="Message" data-type="message"></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<a href="#" class="btn-submit">
+					<span class="btn-text">Send</span>
+					<i class="btn-submit-icon"></i>
+				</a>
+			</div>
+			<div class="success-message"></div>
+		</form>
+
+
+	</section><!-- /.contact -->
+
+	<script src="js/contact.js"></script>
+	<script>
+		// boot
+		(function () {
+			window.$ = document.querySelector.bind(document);
+			window.$$ = document.querySelectorAll.bind(document);
+			contactForm.init();
+		}());
+	</script>
+
+</body>
+</html>

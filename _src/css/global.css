@@ -1,0 +1,65 @@
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+html,
+body {
+	height: 100%;
+}
+body {
+	background: #fff;
+	text-align: center;
+	font: 100%/160% sans-serif;
+	color: #333;
+}
+a {
+	color: #3399ee;
+	text-decoration: none;
+}
+a:hover {
+	color: #333;
+}
+
+/* UTILITY CLASSES */
+
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.block {
+	display: block;
+}
+.hidden {
+	display: none;
+	visibility: hidden;
+}
+.text-center {
+	text-align: center;
+}
+.text-right {
+	text-align: right;
+}
+.container {
+	margin: 0 auto;
+}
+
+/* UI ELEMENTS */
+
+i,
+.btn {
+	display: inline-block;
+}
+.btn-project {
+	background-color: #666;
+	border-radius: 4px;
+	padding: 10px 30px;
+	color: #fff;
+	margin-top: 20px;
+}
+.btn-project:hover {
+	background-color: #333;
+	color: #fff;
+}
