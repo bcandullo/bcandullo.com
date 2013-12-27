@@ -87,29 +87,23 @@ window.B.contact = (function (utils) {
 		console.log('form : sending...');
 
 		el.submit.classList.add('load');
-		setTimeout(function () {
-			el.submit.classList.remove('load');
-		}, 2000);	
 
 		// disable form
-		/*toggleForm(true);
-		el.form.classList.add('sent');*/
+		toggleForm(true);
 
 		// callback for ajax success
 		var success = function () {
 			el.status.success.innerHTML = messages.success;
 			el.status.success.classList.add('active');
-			el.submitText.textContent = 'Sent';
+			el.form.classList.add('sent');
 		};
 
 		// callback for any ajax error
 		var failure = function () {
 			el.status.failure.innerHTML = messages.failure;
 			el.status.failure.classList.add('active');
-			el.submitText.textContent = 'Error';
+			el.form.classList.add('sent');
 		}
-
-		return false;
 
 		// build data
 		var data = {
@@ -117,14 +111,15 @@ window.B.contact = (function (utils) {
 			email: el.email.value,
 			message: el.message.value
 		};
-
+		
 		// send xhr
 		utils.ajax({
 			url: 'http://128.0.0.1',
 			data: JSON.stringify(data),
 			success: success,
-			failure: failure
+			failure: success
 		});
+		
 
 	}
 
@@ -177,7 +172,6 @@ window.B.contact = (function (utils) {
 			email: $('.input-email'),
 			message: $('.input-message'),
 			submit: $('.btn-submit'),
-			submitText: $('.btn-text'),
 			error: $('.error-message'),
 			status: {
 				failure: $('.success-message'),

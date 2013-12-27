@@ -14,6 +14,7 @@
 	    color: #fff;
 	    font-weight: 700;
 	    position: relative;
+	    .transition(background-color 0.1s linear);
 	    &:hover { }
 	    &:active {
 	    	background-color: #999;
@@ -27,7 +28,7 @@
 			.transition(all .1s ease-out);
 	    }
 	}
-	&.sent {
+	&.sent { // form completion states
 		opacity: 0;
 		.transition(opacity 0.3s ease-out);
 	}
@@ -38,19 +39,17 @@
 		top: 30%;
 		left: 25%;
 		opacity: 0;
-		.transform(translate3d(0, 20px, 0));
 		.transition(all .1s ease-out);
 	}
-	.btn.btn-submit.load {
+	.btn.btn-submit.load { // loading state
 		background-color: #333;
-		.transition(background-color 0.1s linear);
+		
 		.btn-text {
 			opacity: 0;
 			.transform(translate3d(0, -20px, 0));
 		}
 		.btn-status {
 			opacity: 1;
-			.transform(none);
 			i {
 				content: ' ';
 				background-color: #fff;
@@ -62,10 +61,10 @@
 					.animation(status 0.4s 0.1s linear infinite alternate);
 				}
 				&:nth-child(2) {
-					.animation(status 0.4s 0.2s linear infinite alternate);
+					.animation(status 0.4s 0.24s linear infinite alternate);
 				}
 				&:nth-child(3) {
-					.animation(status 0.4s 0.3s linear infinite alternate);
+					.animation(status 0.4s 0.38s linear infinite alternate);
 				}
 			}
 		}

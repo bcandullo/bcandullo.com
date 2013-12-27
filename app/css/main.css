@@ -1125,11 +1125,19 @@ table {
 }
 /* S */
 @media (max-width: 768px) {
-  .btn {
+  body .btn {
     width: 93%;
+  }
+  body .error-message {
+    z-index: 1;
   }
 }
 /* M */
+@media (min-width: 768px) {
+  body .error-message {
+    z-index: 1;
+  }
+}
 /* L */
 @media (min-width: 992px) {
   .contact-form .row:nth-child(2) {
@@ -1158,6 +1166,15 @@ a {
 }
 a:hover {
   color: #333333;
+}
+h2 {
+  font-size: 200%;
+}
+h3 {
+  width: 90%;
+  margin: 0 auto;
+  font-weight: 300;
+  line-height: 160%;
 }
 input,
 textarea {
@@ -1209,6 +1226,9 @@ i,
 .btn-project:hover {
   background-color: #333;
   color: #fff;
+}
+.section-header {
+  margin-bottom: 7%;
 }
 .projects {
   text-align: left;
@@ -1268,6 +1288,10 @@ i,
   color: #fff;
   font-weight: 700;
   position: relative;
+  -webkit-transition: background-color 0.1s linear;
+  -moz-transition: background-color 0.1s linear;
+  -ms-transition: background-color 0.1s linear;
+  -o-transition: background-color 0.1s linear;
 }
 .contact-form .btn-submit:active {
   background-color: #999;
@@ -1297,10 +1321,6 @@ i,
   top: 30%;
   left: 25%;
   opacity: 0;
-  -webkit-transform: translate3d(0, 20px, 0);
-  -moz-transform: translate3d(0, 20px, 0);
-  -ms-transform: translate3d(0, 20px, 0);
-  -o-transform: translate3d(0, 20px, 0);
   -webkit-transition: all 0.1s ease-out;
   -moz-transition: all 0.1s ease-out;
   -ms-transition: all 0.1s ease-out;
@@ -1308,10 +1328,6 @@ i,
 }
 .contact-form .btn.btn-submit.load {
   background-color: #333;
-  -webkit-transition: background-color 0.1s linear;
-  -moz-transition: background-color 0.1s linear;
-  -ms-transition: background-color 0.1s linear;
-  -o-transition: background-color 0.1s linear;
 }
 .contact-form .btn.btn-submit.load .btn-text {
   opacity: 0;
@@ -1322,10 +1338,6 @@ i,
 }
 .contact-form .btn.btn-submit.load .btn-status {
   opacity: 1;
-  -webkit-transform: none;
-  -moz-transform: none;
-  -ms-transform: none;
-  -o-transform: none;
 }
 .contact-form .btn.btn-submit.load .btn-status i {
   content: ' ';
@@ -1346,24 +1358,24 @@ i,
   animation: status 0.4s 0.1s linear infinite alternate;
 }
 .contact-form .btn.btn-submit.load .btn-status i:nth-child(2) {
-  -webkit-animation: status 0.4s 0.2s linear infinite alternate 300ms 0 ease;
-  -moz-animation: status 0.4s 0.2s linear infinite alternate 300ms 0 ease;
-  -ms-animation: status 0.4s 0.2s linear infinite alternate 300ms 0 ease;
-  -webkit-animation: status 0.4s 0.2s linear infinite alternate;
-  -moz-animation: status 0.4s 0.2s linear infinite alternate;
-  -ms-animation: status 0.4s 0.2s linear infinite alternate;
-  -o-animation: status 0.4s 0.2s linear infinite alternate;
-  animation: status 0.4s 0.2s linear infinite alternate;
+  -webkit-animation: status 0.4s 0.24s linear infinite alternate 300ms 0 ease;
+  -moz-animation: status 0.4s 0.24s linear infinite alternate 300ms 0 ease;
+  -ms-animation: status 0.4s 0.24s linear infinite alternate 300ms 0 ease;
+  -webkit-animation: status 0.4s 0.24s linear infinite alternate;
+  -moz-animation: status 0.4s 0.24s linear infinite alternate;
+  -ms-animation: status 0.4s 0.24s linear infinite alternate;
+  -o-animation: status 0.4s 0.24s linear infinite alternate;
+  animation: status 0.4s 0.24s linear infinite alternate;
 }
 .contact-form .btn.btn-submit.load .btn-status i:nth-child(3) {
-  -webkit-animation: status 0.4s 0.3s linear infinite alternate 300ms 0 ease;
-  -moz-animation: status 0.4s 0.3s linear infinite alternate 300ms 0 ease;
-  -ms-animation: status 0.4s 0.3s linear infinite alternate 300ms 0 ease;
-  -webkit-animation: status 0.4s 0.3s linear infinite alternate;
-  -moz-animation: status 0.4s 0.3s linear infinite alternate;
-  -ms-animation: status 0.4s 0.3s linear infinite alternate;
-  -o-animation: status 0.4s 0.3s linear infinite alternate;
-  animation: status 0.4s 0.3s linear infinite alternate;
+  -webkit-animation: status 0.4s 0.38s linear infinite alternate 300ms 0 ease;
+  -moz-animation: status 0.4s 0.38s linear infinite alternate 300ms 0 ease;
+  -ms-animation: status 0.4s 0.38s linear infinite alternate 300ms 0 ease;
+  -webkit-animation: status 0.4s 0.38s linear infinite alternate;
+  -moz-animation: status 0.4s 0.38s linear infinite alternate;
+  -ms-animation: status 0.4s 0.38s linear infinite alternate;
+  -o-animation: status 0.4s 0.38s linear infinite alternate;
+  animation: status 0.4s 0.38s linear infinite alternate;
 }
 @-webkit-keyframes status {
   from {
