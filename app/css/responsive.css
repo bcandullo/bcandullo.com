@@ -1,0 +1,24 @@
+/* S */
+
+@media (max-width: 768px) {
+  .btn {
+    width: 93%;
+  }
+}
+/* M */
+
+@media (min-width: 768px) {
+  
+}
+/* L */
+
+@media (min-width: 992px) {
+  .contact-form .row:nth-child(2) {
+    margin-bottom: 40px;
+  }
+}
+/* XL */
+
+@media (min-width: 1200px) {
+  
+}

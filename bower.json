@@ -1,9 +1,9 @@
 {
-  "name": "bradcandullo",
-  "version": "0.1.0",
-  "main": "",
+  "name": "bcandullo.com",
+  "version": "5.0.1",
+  "main": "app/",
   "dependencies": {
     "normalize-css": "latest",
-    "bootstrap-grid": "https://braddev@bitbucket.org/braddev/bootstrap-3.git"
+    "bootstrap-grid-css": "latest"
   }
 }

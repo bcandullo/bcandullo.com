@@ -1,0 +1,129 @@
+@import 'vars.less';
+
+.contact-form {
+	position: relative;
+	&.disabled {
+		pointer-events: none;
+	}
+	.btn-submit { // submit button
+	    background: #aaa;
+	    height: 48px;
+	    display: inline-block;
+	    padding: 12px 100px;
+	    margin: 30px 0;
+	    color: #fff;
+	    font-weight: 700;
+	    position: relative;
+	    &:hover { }
+	    &:active {
+	    	background-color: #999;
+	    }
+	    .btn-text {
+	    	width: 50%;
+			display: block;
+			position: absolute;
+			top: 30%;
+			left: 25%;
+			.transition(all .1s ease-out);
+	    }
+	}
+	&.sent {
+		opacity: 0;
+		.transition(opacity 0.3s ease-out);
+	}
+	.btn-status { // status dots
+		width: 50%;
+		display: block;
+		position: absolute;
+		top: 30%;
+		left: 25%;
+		opacity: 0;
+		.transform(translate3d(0, 20px, 0));
+		.transition(all .1s ease-out);
+	}
+	.btn.btn-submit.load {
+		background-color: #333;
+		.transition(background-color 0.1s linear);
+		.btn-text {
+			opacity: 0;
+			.transform(translate3d(0, -20px, 0));
+		}
+		.btn-status {
+			opacity: 1;
+			.transform(none);
+			i {
+				content: ' ';
+				background-color: #fff;
+				width: 8px;
+				height: 8px;
+				border-radius: 10px;
+				opacity: 0;
+				&:nth-child(1) {
+					.animation(status 0.4s 0.1s linear infinite alternate);
+				}
+				&:nth-child(2) {
+					.animation(status 0.4s 0.2s linear infinite alternate);
+				}
+				&:nth-child(3) {
+					.animation(status 0.4s 0.3s linear infinite alternate);
+				}
+			}
+		}
+	}
+}
+
+// status dots animation
+
+@-webkit-keyframes status { .status-animation }
+@-moz-keyframes status { .status-animation }
+@-ms-keyframes status { .status-animation }
+@-o-keyframes status { .status-animation }
+@keyframes status { .status-animation }
+
+// messaging
+
+.message {
+	width: 60%;
+	position: absolute;
+	left: 30%;
+	margin-left: -10%;
+	opacity: 0;
+	.transition(opacity 0.1s linear 0.2s);
+	&.active {
+		opacity: 1;
+	}
+}
+.success-message h3,
+.failure-message h3 {
+	font-size: 600%;
+	margin: 40px;
+}
+
+// errors
+
+.error-message {
+	background: @error;
+	width: auto;
+	display: inline-block;
+	color: #fff;
+	padding: 4px 20px;
+	margin-left: 15px;
+	opacity: 0;
+	position: absolute;
+	z-index: 0;
+	text-align: left;
+	.translate3d(0, -90px, 0);
+	-webkit-transition: -webkit-transform .1s ease-in-out .1s, opacity .1s linear .15s;
+	-moz-transition: -moz-transform .1s ease-in-out .1s, opacity .1s linear .15s;
+	transition: transform .1s ease-in-out .1s, opacity .1s linear .15s;
+	&.active {
+		 opacity: 1;
+	    .translate3d(0, -31px, 0);
+	}
+}
+.contact-form .error input,
+.contact-form .error textarea {
+	box-shadow: inset 0 0 0 3px @error;
+	border-color: @error;
+	.transition(box-shadow .2s ease-out);
+}
