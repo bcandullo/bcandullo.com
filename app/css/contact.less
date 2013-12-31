@@ -126,3 +126,22 @@
 	border-color: @error;
 	.transition(box-shadow .2s ease-out);
 }
+
+// social
+
+.social {
+	height: 200px;
+	margin-top: 5%;
+	a {
+		font-size: 280%;
+		display: inline-block;
+		margin: 0 5%;
+		padding: 20px;
+		color: #bbb;
+		.transition(all 0.1s cubic-bezier(0, -1, 0, 2));
+		&:hover {
+			color: #333;
+			.transform(scale(1.4));
+		}
+	}
+}

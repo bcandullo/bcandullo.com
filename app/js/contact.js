@@ -56,11 +56,11 @@ window.B.contact = (function (utils) {
 
 		console.log('form : error : ' + type);
 
-		// format message
-		el.error.textContent = messages[type];
+		// format error message
 		el.error.classList.add('active');
-		el.error.style.top = el[type].parentElement.offsetTop + 'px';
-		el.error.style.left = el[type].parentElement.offsetLeft + 'px';
+		el.error.style.cssText += '; top: ' + el[type].parentElement.offsetTop + 'px'
+								+ '; left: ' + el[type].parentElement.offsetLeft + 'px';
+		el.error.textContent = messages[type];
 
 		// class parent (row) node
 		el[type].parentNode.classList.add('error');
@@ -111,7 +111,7 @@ window.B.contact = (function (utils) {
 			email: el.email.value,
 			message: el.message.value
 		};
-		
+
 		// send xhr
 		utils.ajax({
 			url: 'http://128.0.0.1',
