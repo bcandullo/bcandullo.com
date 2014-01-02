@@ -171,7 +171,7 @@ window.B.contact = (function (utils) {
 			name: $('.input-name'),
 			email: $('.input-email'),
 			message: $('.input-message'),
-			submit: $('.btn-submit'),
+			submit: $('[data-js=validate]'),
 			error: $('.error-message'),
 			status: {
 				failure: $('.success-message'),

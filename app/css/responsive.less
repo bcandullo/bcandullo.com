@@ -3,11 +3,33 @@
 /* S */
 @media (max-width: @screen-sm) {
 	body {
+
+		// global
+
+		.section-header {
+			text-align: center;
+		}
 		.btn {
 			width: 93%;
 		}
+
+		// projects
+
+		.project-text {
+			padding: 0;
+			text-align: center;
+		}
+
+		// contact
+
 		.error-message {
 			z-index: 1;
+		}
+		.social a {
+			width: 100%;
+			&:hover {
+				.transform(none);
+			}
 		}
 	}
 }

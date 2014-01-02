@@ -57,8 +57,11 @@ module.exports = function (grunt) {
             }
         },
 
-        // watch
+        // watch for dev only
         watch: {
+            options: {
+                livereload: true
+            },
             css: {
                 files: '**/*.less',
                 tasks: [ 'less:dev' ],
