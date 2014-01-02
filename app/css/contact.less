@@ -1,5 +1,8 @@
 @import 'vars.less';
 
+.contact {
+	//background-color: #fec;
+}
 .contact-form {
 	position: relative;
 	&.disabled {
@@ -130,16 +133,20 @@
 // social
 
 .social {
-	padding: 50px 0;
-	margin-top: 5%;
+	//background-color: #3ae;
+	position: relative;
+	z-index: 1;
+	color: #fff;
 	a {
 		font-size: 280%;
 		display: inline-block;
 		padding: 20px;
-		color: #999;
+		margin-top: 20px;
+		color: #fff;
+		opacity: 0.5;
 		.transition(all 0.1s cubic-bezier(0, -0.5, 0, 2));
 		&:hover {
-			color: #333;
+			opacity: 1;
 			.transform(scale(1.4));
 		}
 	}
@@ -149,4 +156,29 @@
 			float: right;
 		}
 	}
+}
+
+// experimental background stuffs
+
+.social:before {
+content: ' ';
+background-color: #289;
+width: 110%;
+height: 110%;
+position: absolute;
+top: 0;
+left: 0;
+z-index: -1;
+-webkit-transform: translate3d(-10px, 0 0) rotate(-3deg);
+}
+.social .section-bg {
+background: #39a;
+width: 110%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+z-index: -1;
+box-shadow: -4px -10px 0 2px rgba(0, 0, 0, 0.084);
+-webkit-transform: translate3d(-10px, 10px, 0) rotate(-1deg);
 }

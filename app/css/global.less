@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 @import 'vars.less';
 
 // global
@@ -12,10 +13,14 @@ body {
 	height: 100%;
 }
 body {
-	background: #fff;
+	background-color: #fec;
+	overflow-x: hidden;
 	text-align: center;
-	font: 100%/160% sans-serif;
+	font: 400 100%/160% Montserrat, sans-serif;
 	color: @text;
+}
+section {
+	padding: 100px 0;
 }
 a {
 	color: #3399ee;
@@ -29,12 +34,19 @@ a {
 
 h2 {
 	font-size: 200%;
+	cursor: default;
+}
+h4 {
+	font-size: 200%;
+	line-height: 130%;
+	cursor: default;
 }
 h6 {
 	width: 90%;
 	margin: 0 auto;
 	font-weight: 300;
 	line-height: 160%;
+	cursor: default;
 }
 
 // html inputs
