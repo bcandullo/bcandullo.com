@@ -15,22 +15,26 @@ module.exports = function (grunt) {
                     'build/js/build.js': [
                         'app/js/app.js',
                         'app/js/utils.js',
-                        'app/js/contact.js'
-                    ]
+                        'app/js/contact.js',
+                        'app/js/browser.js'
+                    ],
+                    'build/js/canvas.js': ['app/js/browser.js']
                 }
             }
         },
 
-        // minify html
+        // minify html - https://github.com/gruntjs/grunt-contrib-htmlmin#htmlmin-task
         htmlmin: {
-            options: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeAttributeQuotes: true,
-                removeRedundantAttributes: true
-            },
-            files: {
-                'build/index.html': 'app/index.html'
+            prod: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    removeAttributeQuotes: true,
+                    removeRedundantAttributes: true
+                },
+                files: {
+                    'build/index.html': 'app/index.html'
+                }
             }
         },
     
@@ -60,11 +64,16 @@ module.exports = function (grunt) {
         // watch for dev only
         watch: {
             options: {
+                //nospawn: true,
                 livereload: true
             },
             css: {
                 files: '**/*.less',
                 tasks: [ 'less:dev' ],
+            },
+            html: {
+                files: '**/*.html'
+                // dev html tasks
             }
         }
 
@@ -75,7 +84,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
-
+    //grunt.loadNpmTasks('grunt-contrib-imagemin');
+    // https://npmjs.org/package/grunt-smushit
+    
     // register tasks for envs
     grunt.registerTask('dev', [ 'less:dev', 'watch' ]);
     grunt.registerTask('prod', [ 'less:prod', 'htmlmin', 'uglify' ]);

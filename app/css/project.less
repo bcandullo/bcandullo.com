@@ -1,44 +1,255 @@
 @import 'vars.less';
 
+// chrome window
+
+.chrome-header { // main
+    background-color: #ddd;
+    width: 100%;
+    height: 30px;
+    border-radius: 3px 3px 0 0;
+    position: relative;
+    &:before { // bottom bar
+        content: ' ';
+        background-color: #eee;
+        width: 100%;
+        height: 11px;
+        position: absolute;
+        bottom: 0;
+    }
+    &:after { // tab
+        content: ' ';
+        background-color: #eee;
+        width: 20%;
+        height: 28px;
+        position: absolute;
+        top: -2px;
+        left: 12%;
+        bottom: 10px;
+        border-radius: 3px;
+        .transform(perspective(200px) rotateX(50deg));
+        
+    }
+    .chrome-buttons, // close
+    .chrome-buttons:before,
+    .chrome-buttons:after {
+        content: ' ';
+        background-color: #D8571B;
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 6px;
+        left: 10px;
+        display: inline-block;
+        border-radius: 20px;
+    }
+    .chrome-buttons:before { // min
+        background-color: #aaa;
+        top: 0;
+        left: 13px;
+    }
+    .chrome-buttons:after { // max
+        background-color: #aaa;
+        top: 0;
+        left: 26px;
+    }
+}
+
+// list view
+
 .projects {
+    background-color: @bg-projects;
     text-align: left;
+    .project {
+        padding-bottom: 7%;
+        &:first-child {
+            padding-top: 100px;
+        }
+        img {
+            display: block; // fixes blink jank on button animation
+            margin: 0 auto;
+        }
+    }
+    .col-md-6 {
+        text-align: center;
+    }
+    .project-text {
+        cursor: default;
+    }
+    .project-text:nth-child(odd) {
+        padding-left: 0;
+        padding-right: 40px;
+    }
+    .project-header {
+        margin-bottom: 30px;
+    }
+    .project-title {
+        font-size: 340%;
+        //font-weight: 600;
+        margin-bottom: 40px;
+    }
+    .project-labels {
+        list-style: none;
+        line-height: 20px;
+        padding: 0;
+        margin-top: 6px;
+    }
+    .project-labels .label { // project labels
+    	background-color: transparent;
+        padding: 2px 11px 2px 13px;
+        display: inline-block;
+        font-size: 60%;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-right: 6px;
+        position: relative;
+        color: darken(@project-label-color, 10%);
+        border: 1px dashed @project-label-color;
+        z-index: 2;
+        border-right: 0;
+        &:after { // label arrow
+            content: ' ';
+            background-color: @bg-projects;
+            width: 17px;
+            height: 17px;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            margin: -9px -9px 0 0;
+            border: 1px dashed darken(@project-label-color, 5%);
+            border-left: 0;
+            border-bottom: 0;
+            .transform(rotate(45deg));
+        }
+        &:nth-child(2),
+        &:last-child {
+            border-left: 0;
+            margin-left: -10px;
+            padding-left: 24px;
+            padding-right: 12px;
+        }
+    }
+    .project-details {
+        font-size: 96%;
+        line-height: 200%;
+    }
+    .btn-project { // project launch button
+        height: 41px;
+        border-radius: @radius-button;
+        padding: 6px 60px;
+        color: #fff;
+        margin-top: 20px;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #AFF6E0;
+        }
+        &:active {
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.4),
+                        inset 0 0 0 2px #AFF6E0;
+        }
+    }
 }
-.project {
+
+// fullscreen view (browser)
+
+.browser {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    &.active {
+        visibility: visible;
+        .project-display { // wrapper active
+            opacity: 1;
+            .transform(none);
+        }
+    }
+    .project-header {
+        position: fixed;
+        top: 0;
+        z-index: 1;
+    }
+    .project-nav { // project nav
+        background-color: transparent;
+        width: 270px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: 9;
+        margin-left: -135px;
+        display: none;
+        opacity: 0;
+        .transition(opacity 0.2s linear);
+        button { // project control
+            background-color: rgba(0, 0, 0, 0.2);
+            width: 90px;
+            height: 90px;
+            color: #fff;
+            vertical-align: top;
+            position: relative;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.6);
+            }
+        }
+    }
+    &.loading .project-nav {
+        opacity: 0;
+    }
+    &.loaded .project-nav {
+        display: block;
+    }
+    &.loaded:hover .project-nav {
+        opacity: 1;
+    }
+    .project-display { // wrapper inactive state
+        opacity: 0;
+        position: relative;
+        z-index: 2;
+        .transition(all .16s ease-out);
+        .transform( translate3d(0, -1%, 0) scale(0.9) );
+        img { // large image
+            position: relative;
+            z-index: 3;
+            box-shadow: 0 0 90px rgba(0, 0, 0, 0.6);
+        }
+    }
+    .btn-close {
+        font-size: 120%;
+    }
 }
-.project-image {
-    background: #0ae;
-    height: 500px;
+
+.touch .project-nav { // nav remains visible on touch devices
+    display: block;
+    opacity: 1;
 }
-.project-text {
-    padding: 60px 0 0 0;
-    cursor: default;
+
+// sections
+
+.sections {
+    background-color: @bg-main;
+    overflow: hidden;
+    .transition(all .16s ease-in-out);
+    &.inactive {
+        .transform(scale(0.9));
+    }
 }
-.project-text:nth-child(odd) {
-    padding-left: 0;
-    padding-right: 40px;
+.section-header {
+    margin-bottom: 7%;
 }
-.project-header {
-    margin-bottom: 30px;
+
+// overlay
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    display: none;
+    cursor: pointer;
 }
-.project-title {
-    font-size: 190%;
-}
-.project-labels {
-    list-style: none;
-    line-height: 20px;
-    padding: 0;
-    margin-top: 6px;
-}
-.project-labels .label {
-	background: #ccc;
-    padding: 0 10px;
-    display: inline-block;
-    font-size: 70%;
-    text-transform: uppercase;
-    margin-right: 6px;
-    color: #fff;
-    border-radius: 2px;
-}
-.project-details {
-    font-size: 90%;
+.browser.active .overlay {
+    display: block;
 }

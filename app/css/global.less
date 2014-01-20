@@ -1,4 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 @import 'vars.less';
 
 // global
@@ -13,11 +12,16 @@ body {
 	height: 100%;
 }
 body {
-	background-color: #fec;
-	overflow-x: hidden;
+	background-color: #333; // background of browser
 	text-align: center;
-	font: 400 100%/160% Montserrat, sans-serif;
+	/*font: 400 100%/160% ff-enzo-web, sans-serif;*/
+	font: 300 100%/160% Rokkitt, sans-serif;
 	color: @text;
+}
+canvas {
+	width: 100%;
+	position: relative;
+	z-index: 0;
 }
 section {
 	padding: 100px 0;
@@ -32,21 +36,25 @@ a {
 
 // typography
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 300;
+}
 h2 {
 	font-size: 200%;
-	cursor: default;
 }
 h4 {
-	font-size: 200%;
-	line-height: 130%;
-	cursor: default;
+	font-size: 240%;
+	line-height: 120%;
 }
 h6 {
 	width: 90%;
 	margin: 0 auto;
-	font-weight: 300;
 	line-height: 160%;
-	cursor: default;
 }
 
 // html inputs
@@ -56,14 +64,23 @@ textarea {
 	width: 100%;
 	outline: none;
 	padding: 12px 16px;
-	border: 1px solid #aaa;
+	border: 0;
+	font-size: 110%;
+	-webkit-border-radius: 0;
+	.transition(box-shadow 0.1s cubic-bezier(0, -1, 0, 2));
+	&:focus {
+		box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.14);
+	}
 }
 textarea {
 	height: 200px;
 	resize: vertical;
+	-webkit-border-radius: 0;
 }
 button {
 	border: 0;
+	outline: none;
+	-webkit-border-radius: 0;
 }
 
 // utility classes
@@ -73,9 +90,6 @@ button {
 }
 .right {
 	float: right;
-}
-.block {
-	display: block;
 }
 .hidden {
 	display: none;
@@ -100,20 +114,71 @@ i,
 .btn {
 	display: inline-block;
 }
-.btn-project {
-	background-color: #666;
-	border-radius: 4px;
-	padding: 10px 30px;
-	color: #fff;
-	margin-top: 20px;
-	&:hover {
-		background-color: #333;
-		color: #fff;
+.btn {
+	border-radius: @radius-button;
+}
+
+// button status
+
+.btn-status {
+    background: rgba(0, 0, 0, 0.4);
+    height: 38px;
+    padding: 12px 100px;
+    margin: 30px 0;
+    color: #fff;
+    //font-weight: 700;
+    position: relative;
+    .transition(background-color 0.1s linear);
+    .btn-text {
+    	width: 50%;
+		position: absolute;
+		top: 33%;
+		left: 25%;
+		.transition(all .1s ease-out);
+    }
+    &.loading { // loading state
+    	background-color: @blue;
+    	pointer-events: none;
+		.btn-text {
+			opacity: 0;
+			.transform(translate3d(0, -20px, 0));
+		}
+		.status-animation {
+			opacity: 1;
+			i {
+				content: ' ';
+				background-color: #fff;
+				width: 8px;
+				height: 8px;
+				border-radius: 10px;
+				opacity: 0;
+				&:nth-child(1) {
+					.animation(status 0.6s 0.14s linear infinite alternate);
+				}
+				&:nth-child(2) {
+					.animation(status 0.6s 0.24s linear infinite alternate);
+				}
+				&:nth-child(3) {
+					.animation(status 0.6s 0.34s linear infinite alternate);
+				}
+			}
+		}
+    }
+    .status-animation { // status dots
+		width: 50%;
+		display: block;
+		position: absolute;
+		top: 33%;
+		left: 25%;
+		opacity: 0;
+		.transition(all .1s ease-out);
 	}
 }
 
-// sections
+// button status animation
 
-.section-header {
-	margin-bottom: 7%;
-}
+@-webkit-keyframes status { .status-animation }
+@-moz-keyframes status { .status-animation }
+@-ms-keyframes status { .status-animation }
+@-o-keyframes status { .status-animation }
+@keyframes status { .status-animation }

@@ -58,9 +58,10 @@ window.B.contact = (function (utils) {
 
 		// format error message
 		el.error.classList.add('active');
-		el.error.style.cssText += '; top: ' + el[type].parentElement.offsetTop + 'px'
+		el.error.style.cssText = 'top: ' + (el[type].parentElement.offsetTop + 2) + 'px'
 								+ '; left: ' + el[type].parentElement.offsetLeft + 'px';
-		el.error.textContent = messages[type];
+
+		el.errorText.textContent = messages[type];
 
 		// class parent (row) node
 		el[type].parentNode.classList.add('error');
@@ -86,7 +87,7 @@ window.B.contact = (function (utils) {
 
 		console.log('form : sending...');
 
-		el.submit.classList.add('load');
+		el.submit.classList.add('loading');
 
 		// disable form
 		toggleForm(true);
@@ -112,6 +113,14 @@ window.B.contact = (function (utils) {
 			message: el.message.value
 		};
 
+		// for testing
+		setTimeout(function () {
+			el.submit.classList.remove('loading');
+			toggleForm(false);
+		}, 3000);
+
+		return false;
+
 		// send xhr
 		utils.ajax({
 			url: 'http://128.0.0.1',
@@ -120,7 +129,6 @@ window.B.contact = (function (utils) {
 			failure: success
 		});
 		
-
 	}
 
 	function validate (event) {
@@ -173,6 +181,7 @@ window.B.contact = (function (utils) {
 			message: $('.input-message'),
 			submit: $('[data-js=validate]'),
 			error: $('.error-message'),
+			errorText: $('.error-message-text'),
 			status: {
 				failure: $('.success-message'),
 				success: $('.success-message')
