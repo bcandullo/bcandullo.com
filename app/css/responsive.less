@@ -7,6 +7,23 @@
 	height: auto;
 }
 
+.project-label-noborder() {
+	.label {
+		background-color: rgba(0, 0, 0, 0.1);
+		border: 0;
+		padding: 4px 10px !important;
+		margin: 0 !important;
+		&:after {
+			display: none;
+		}
+	}
+}
+
+// right border looks janky on touch devices
+.touch .project .project-labels {
+	.project-label-noborder();
+}
+
 /* S */
 @media (max-width: @screen-sm) {
 
@@ -54,17 +71,6 @@
 			padding: 0;
 			.project {
 				padding: 40px 0 !important;
-				.project-labels {
-					.label {
-						background-color: rgba(0, 0, 0, 0.1);
-						border: 0;
-						padding: 4px 10px !important;
-						margin: 0 !important;
-						&:after {
-							display: none;
-						}
-					}
-				}
 				.chrome-header {
 					display: none;
 				}
@@ -119,6 +125,9 @@
 	}
 
 	body {
+
+		// global
+
 		.contact h4 {
 			width: 80%;
 			font-size: 180%;
@@ -137,6 +146,7 @@
 		.error-message {
 			z-index: 1;
 		}
+
 	}
 
 }

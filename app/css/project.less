@@ -27,7 +27,6 @@
         bottom: 10px;
         border-radius: 3px;
         .transform(perspective(200px) rotateX(50deg));
-        
     }
     .chrome-buttons, // close
     .chrome-buttons:before,
@@ -172,11 +171,12 @@
     .project-nav { // project nav
         background-color: transparent;
         width: 270px;
+        height: 90px;
         position: fixed;
         top: 50%;
         left: 50%;
         z-index: 9;
-        margin-left: -135px;
+        margin: -45px 0 0 -135px;
         display: none;
         opacity: 0;
         .transition(opacity 0.2s linear);

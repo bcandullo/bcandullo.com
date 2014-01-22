@@ -1,7 +1,7 @@
 @import 'vars.less';
 
 .contact {
-	background-color: @blue;
+	background-color: @peach;
 	.section-header {
 		margin-bottom: 3%;
 		color: #fff;
@@ -24,7 +24,7 @@
 				border-color: rgba(0, 0, 0, 0.2);
 				.icon-paper-plane {
 					color: rgba(0, 0, 0, 0.2);
-					.transform( scale(1.6) rotate(20deg) translate3d(0, 3px, 0));
+					.transform(scale(1.6) rotate(20deg) translate3d(0, 3px, 0));
 				}
 			}
 			&:active {
@@ -42,8 +42,8 @@
 				position: relative;
 				top: 3px;
 				left: 20px;
-				color: #3399AA;
-				.transition(all 0.1s cubic-bezier(0, 0, 0, 3));
+				color: @peach;
+				//.transition(all 0.1s cubic-bezier(0, 0, 0, 3));
 			}
 		}
 		&.disabled {
@@ -136,7 +136,7 @@
 				position: absolute;
 				top: -10px;
 				left: -10px;
-				font: 26% ff-enzo-web, sans-serif;
+				font: 24% Rokkitt, sans-serif;
 				opacity: 0;
 				.transform(scale(2));
 				.transition(all 0.1s linear 0.01s);

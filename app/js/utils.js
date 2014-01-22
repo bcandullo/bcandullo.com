@@ -1,5 +1,8 @@
 window.B.utils = (function () {
 
+	window.$ = document.querySelector.bind(document);
+	window.$$ = document.querySelectorAll.bind(document);
+
 	/*
 	* check for touch events - ala modernizr
 	*/
@@ -17,13 +20,13 @@ window.B.utils = (function () {
 	return {
 
 		isMobile: function () {
-			return (/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent);
+			return (/iPhone|iPod|Android|BlackBerry/).test(navigator.userAgent);
 		},
 
 		loadScript: function (url) {
 			var script = document.createElement('script');
 				script.setAttribute('src', url);
-			document.getElementsByTagName('head')[0].appendChild(script)
+			document.getElementsByTagName('head')[0].appendChild(script);
 		},
 
 		insertTemplate: function (el, tpl, position) {
@@ -75,3 +78,21 @@ window.B.utils = (function () {
 
 
 }());
+
+/*
+* support 1st gen ipad (function.prototype.bind)
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+*/
+if (!Function.prototype.bind) {
+	Function.prototype.bind = function (oThis) {
+		var aArgs = Array.prototype.slice.call(arguments, 1), 
+			fToBind = this, 
+			fNOP = function () {},
+			fBound = function () {
+				return fToBind.apply(this instanceof Function && oThis ? this : oThis, aArgs.concat(Array.prototype.slice.call(arguments)));
+			};
+		fNOP.prototype = this.prototype;
+		fBound.prototype = new fNOP();
+		return fBound;
+	};
+}

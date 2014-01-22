@@ -133,23 +133,23 @@
 							<div class="chrome-header">
 								<div class="chrome-buttons"></div>
 							</div>
-							<img src="img/projects/albm/0-small.jpg" class="img-responsive">
+							<img src="img/projects/beach/0-small.jpg" class="img-responsive">
 						</div>
 						<div class="project-text col-md-5 col-md-offset-1">
 							<header class="project-header">
 								<h3 class="project-title">
-									Nextstep
+									Beach
 								</h3>
 								<ul class="project-labels">
 									<li class="label">ui design</li>
-									<li class="label">prototyping</li>
+									<li class="label">development</li>
 								</ul>
 							</header>
 							<div class="project-details">
 								<p>
 									User interface design and client-side prototyping for a conceptual consumer product. Albm lets users create a media album from any social website, even old myspace photos.
 								</p>
-								<button class="btn btn-project btn-status" data-project="nextstep" data-js="browser">
+								<button class="btn btn-project btn-status" data-project="beach" data-js="browser">
 									<span class="btn-text">Launch</span>
 									<span class="status-animation">
 										<i></i>
@@ -259,48 +259,12 @@
 		</div>
 	</article><!-- /.browser -->
 
-	<script src="js/app.js"></script>
+	<script>
+		window.B = window.B || {} // bootsrap
+	</script>
 	<script src="js/utils.js"></script>
 	<script src="js/contact.js"></script>
-	<script>
-
-		(function () {
-
-			// boot
-			window.B.contact.init();
-
-			// load project browser if client isnt mobile os
-			if (!window.B.utils.isMobile()) {
-				window.B.utils.loadScript('js/browser.js');
-			}
-
-			// load canvas for devices with mouse input only
-			if (true) { // $('html').classList.contains('no-touch')
-
-				window.B.utils.loadScript('js/canvas.js');
-
-				// readystate must be complete for webfonts to work with canvas
-				document.onreadystatechange = function () {
-					if (document.readyState === 'complete') {
-						if (window.B.canvas) {
-							window.B.canvas.init();
-						}
-						if (window.B.browser) {
-							window.B.browser.init();
-						}
-					}
-				}
-
-			}
-
-			// for fun
-			console.log('nice to see you, have an object');
-			console.log(window.B);
-
-		}());
-		
-
-	</script>
+	<script src="js/app.js"></script>
 
 </body>
 </html>

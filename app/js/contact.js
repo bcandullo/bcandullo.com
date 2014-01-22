@@ -58,7 +58,7 @@ window.B.contact = (function (utils) {
 
 		// format error message
 		el.error.classList.add('active');
-		el.error.style.cssText = 'top: ' + (el[type].parentElement.offsetTop + 2) + 'px'
+		el.error.style.cssText = 'top: ' + (el[type].parentElement.offsetTop) + 'px'
 								+ '; left: ' + el[type].parentElement.offsetLeft + 'px';
 
 		el.errorText.textContent = messages[type];

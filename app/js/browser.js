@@ -7,7 +7,8 @@ window.B.browser = (function (utils) {
 		current = 0, // current image in json
 		path = 'img/projects/', // root of all project images
 		extension = '.jpg', // should always be jpgs
-		currentProject; // stores currently viewed project
+		currentProject, // stores currently viewed project
+		currentScroll = 0;
 
 	/*
 	* project json
@@ -28,7 +29,7 @@ window.B.browser = (function (utils) {
 				"image_1": "1-large"
 			}
 		},
-		"nextstep": {
+		"beach": {
 			"images": {
 				"image_0": "0-large",
 				"image_1": "1-large"
@@ -43,14 +44,16 @@ window.B.browser = (function (utils) {
 	var fn = {
 		next: browseNext,
 		previous: browsePrevious,
+		browser: browseClick,
 		close: function () {
 			console.log('browser : close');
 			el.browser.classList.remove('loaded');
 			el.browser.classList.remove('loading');
+			el.image.style.height = 0; // image sometimes pushes document height too far
 			el.overlay.removeEventListener('click', fn.close);
 			toggleBrowser(false);
-		},
-		browser: browseClick
+			window.scroll(0, currentScroll);
+		}
 	};
 
 	/*
@@ -111,6 +114,7 @@ window.B.browser = (function (utils) {
 
 		// reset (some browsers will flicker old image)
 		el.image.setAttribute('src', '');
+		el.image.style.height = 'auto';
 
 		// show preloader
 		el.browser.classList.remove('loaded');
@@ -142,6 +146,9 @@ window.B.browser = (function (utils) {
 		}
 
 		loadImage(delay);
+
+		// store current y scroll for revert on close
+		currentScroll = window.scrollY; 
 
 	}
 
