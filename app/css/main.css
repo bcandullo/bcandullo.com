@@ -237,6 +237,7 @@ textarea {
   /* 2 */
   margin: 0;
   /* 3 */
+  outline: none;
 }
 /**
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
@@ -1281,26 +1282,8 @@ table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-twitter:before {
-  content: "\e600";
-}
-.icon-github:before {
-  content: "\e601";
-}
-.icon-google-plus:before {
-  content: "\e602";
-}
-.icon-instagram:before {
+.icon-resize-enlarge:before {
   content: "\e603";
-}
-.icon-arrow-right:before {
-  content: "\e606";
-}
-.icon-arrow-left:before {
-  content: "\e607";
-}
-.icon-envelope:before {
-  content: "\e608";
 }
 .icon-linkedin:before {
   content: "\e604";
@@ -1308,14 +1291,41 @@ table {
 .icon-cross:before {
   content: "\e605";
 }
+.icon-arrow-up:before {
+  content: "\e608";
+}
+.icon-twitter:before {
+  content: "\e600";
+}
+.icon-upright:before {
+  content: "\e609";
+}
+.icon-github:before {
+  content: "\e601";
+}
+.icon-arrow-up-right:before {
+  content: "\e60c";
+}
+.icon-google-plus:before {
+  content: "\e602";
+}
+.icon-arrow-up2:before {
+  content: "\e60d";
+}
+.icon-arrow-up3:before {
+  content: "\e60e";
+}
+.icon-arrow-right:before {
+  content: "\e606";
+}
+.icon-arrow-left:before {
+  content: "\e607";
+}
 .icon-warning:before {
   content: "\e60a";
 }
 .icon-paper-plane:before {
   content: "\e60b";
-}
-.icon-signature:before {
-  content: "\e609";
 }
 * {
   -moz-box-sizing: border-box;
@@ -1421,24 +1431,12 @@ i,
 }
 .btn {
   border-radius: 0;
+  position: relative;
 }
 .btn-status {
-  background: rgba(0, 0, 0, 0.4);
-  height: 38px;
-  padding: 12px 100px;
-  margin: 30px 0;
-  color: #fff;
   position: relative;
   -webkit-transition: background-color 0.1s linear;
   -moz-transition: background-color 0.1s linear;
-}
-.btn-status .btn-text {
-  width: 50%;
-  position: absolute;
-  top: 31%;
-  left: 25%;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
 }
 .btn-status.loading {
   background-color: rgba(0, 0, 0, 0.6);
@@ -1446,8 +1444,8 @@ i,
 }
 .btn-status.loading .btn-text {
   opacity: 0;
-  -webkit-transform: translate3d(0, -20px, 0);
-  -moz-transform: translate3d(0, -20px, 0);
+  -webkit-transform: translate3d(0, -40px, 0);
+  -moz-transform: translate3d(0, -40px, 0);
 }
 .btn-status.loading .status-animation {
   opacity: 1;
@@ -1488,6 +1486,14 @@ i,
   top: 33%;
   left: 25%;
   opacity: 0;
+  -webkit-transition: all 0.1s ease-out;
+  -moz-transition: all 0.1s ease-out;
+}
+.btn-text {
+  width: 50%;
+  position: absolute;
+  top: 32%;
+  left: 25%;
   -webkit-transition: all 0.1s ease-out;
   -moz-transition: all 0.1s ease-out;
 }
@@ -1641,9 +1647,10 @@ i,
 }
 .projects .project-labels .label {
   background-color: transparent;
-  padding: 2px 11px 2px 13px;
+  padding: 4px 11px 2px 13px;
   display: inline-block;
-  font-size: 60%;
+  font-size: 68%;
+  line-height: 20px;
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-right: 6px;
@@ -1676,22 +1683,56 @@ i,
   padding-right: 12px;
 }
 .projects .project-details {
-  font-size: 96%;
+  font-size: 100%;
   line-height: 200%;
 }
 .projects .btn-project {
-  height: 41px;
-  border-radius: 0;
-  padding: 6px 60px;
+  background: rgba(0, 0, 0, 0.4);
+  min-width: 120px;
+  height: 40px;
+  padding: 10px 40px;
+  width: auto;
+  margin: 30px 0;
   color: #fff;
-  margin-top: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 90%;
+  letter-spacing: 1px;
+  overflow: hidden;
 }
 .projects .btn-project:hover {
   background-color: rgba(0, 0, 0, 0.8);
   color: #AFF6E0;
 }
+.projects .btn-project:hover .icon-arrow-up-right {
+  -webkit-transform: none;
+  -moz-transform: none;
+}
+.projects .btn-project:hover .btn-text span {
+  -webkit-transform: translate3d(0, 40px, 0);
+  -moz-transform: translate3d(0, 40px, 0);
+}
 .projects .btn-project:active {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.4), inset 0 0 0 2px #aff6e0;
+}
+.projects .btn-project.btn-link .btn-text span {
+  position: relative;
+  top: -6px;
+}
+.projects .btn-project .icon-arrow-up-right {
+  position: absolute;
+  top: 0;
+  left: 38%;
+  font-size: 120%;
+  -webkit-transform: translate3d(0, -40px, 0);
+  -moz-transform: translate3d(0, -40px, 0);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+}
+.projects .btn-project .btn-text span {
+  display: inline-block;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
 }
 .browser {
   width: 100%;
@@ -1810,10 +1851,13 @@ i,
   font-size: 150%;
 }
 .contact .contact-form .btn-submit {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
   height: 70px;
   padding: 36px 160px;
   font-size: 160%;
   border: 3px dashed transparent;
+  margin-top: 40px;
 }
 .contact .contact-form .btn-submit:hover {
   background-color: transparent;
@@ -1884,6 +1928,7 @@ i,
   transition: transform 0.1s ease-in-out 0.1s, opacity 0.1s linear 0.15s;
 }
 .error-message.active {
+  margin-top: -1px;
   opacity: 1;
   -webkit-transform: translate3d(0, -31px, 0);
   -moz-transform: translate3d(0, -31px, 0);

@@ -15,10 +15,13 @@
 	}
 	.contact-form {
 		.btn-submit {
+			background-color: rgba(0, 0, 0, 0.2);
+			color: #fff;
 			height: 70px;
 			padding: 36px 160px;
 			font-size: 160%;
 			border: 3px dashed transparent;
+			margin-top: 40px;
 			&:hover {
 				background-color: transparent;
 				border-color: rgba(0, 0, 0, 0.2);
@@ -93,6 +96,7 @@
 	-moz-transition: -moz-transform .1s ease-in-out .1s, opacity .1s linear .15s;
 	transition: transform .1s ease-in-out .1s, opacity .1s linear .15s;
 	&.active {
+		margin-top: -1px;
 		 opacity: 1;
 	    .translate3d(0, -31px, 0);
 	}
