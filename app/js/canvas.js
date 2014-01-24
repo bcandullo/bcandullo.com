@@ -1,8 +1,10 @@
 window.B.canvas = (function (utils) {
 
+	//return false;
+	
 	'use strict';
 
-	var REDRAW_INT = 18; // ms, higher is slower but easier on cpu
+	var REDRAW_INT = Math.floor(30 - (window.innerWidth / 100)); // ms, higher is slower but easier on cpu
 	var LETTER_DENSITY = 6; // higher = less dense, easier to draw
 	var MAX_DISTANCE = 30; // maxmium explosion distance
 
@@ -110,7 +112,7 @@ window.B.canvas = (function (utils) {
 	// initial canvas sizing
 	function updateCanvasDimensions() {
 		canvas.setAttribute('width', window.innerWidth);
-		canvas.setAttribute('height', canvasHeight);
+		//canvas.setAttribute('height', canvasHeight);
 		canvasWidth = canvas.width;
 		draw();
 	}

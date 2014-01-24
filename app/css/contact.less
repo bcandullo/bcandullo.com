@@ -1,7 +1,7 @@
 @import 'vars.less';
 
 .contact {
-	background-color: @peach;
+	//background-color: @peach;
 	.section-header {
 		margin-bottom: 3%;
 		color: #fff;
@@ -117,6 +117,8 @@
 
 .social {
 	position: relative;
+	color: #fff;
+	overflow: hidden;
 	.col-sm-2 {
 		position: inherit; // fix blink hover jankyness
 		a {
@@ -125,7 +127,7 @@
 			padding: 20px;
 			margin-top: 30px;
 			float: right;
-			.transition(all 0.1s cubic-bezier(0, -0.5, 0, 2));
+			.transition(all 0.16s cubic-bezier(0, -0.5, 0, 2));
 			&:hover {
 				.transform(scale(1.4));
 				&:after { // tooltip hover
@@ -143,12 +145,12 @@
 				font: 24% Rokkitt, sans-serif;
 				opacity: 0;
 				.transform(scale(2));
-				.transition(all 0.1s linear 0.01s);
+				.transition(all 0.14s linear 0.01s);
 			}
 		}
 	}
 	.icon-github {
-		color: #666;
+		color: #ddd;
 	}
 	.icon-twitter {
 		color: #00ABF0;
@@ -164,29 +166,27 @@
 // top button
 
 .btn-top {
-background-color: #f0f0f0;
-width: 120px;
-height: 120px;
-border-radius: 100%;
-position: absolute;
-bottom: -60px;
-left: 50%;
-margin-left: -60px;
--webkit-transition: all 0.1s linear;
--webkit-transform: translate3d(0, 10px, 0) rotate(90deg);
-}
-.btn-top:hover,
-.touch.btn-top {
--webkit-transform: translate3d(0, 0, 0) rotate(90deg);
-}
-.btn-top:before {
-content: '\e607';
-font-family: 'icomoon';
-position: relative;
-top: 45px;
-left: -20px;
-color: #aaa;
-}
-.btn-top:hover:before {
-color: @blue;
+	background-color: rgba(0, 0, 0, 0.2);
+	width: 120px;
+	height: 120px;
+	border-radius: 100%;
+	position: absolute;
+	bottom: -60px;
+	left: 50%;
+	margin-left: -60px;
+	.transition(all 0.1s linear);
+	.transform(translate3d(0, 10px, 0));
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.4);
+		.transform(none);
+		i {
+			color: #fff;
+			.transform(scale(1.2) translate3d(0, 24px, 0));
+		}
+	}
+	i {
+		color: rgba(255, 255, 255, 0.3);
+		.transform(translate3d(0, 20px, 0));
+		.transition(all 0.1s ease-out);
+	}
 }
