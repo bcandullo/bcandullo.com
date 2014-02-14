@@ -41,10 +41,13 @@ window.B.utils = (function () {
 			return (/iPhone|iPod|Android|BlackBerry/).test(navigator.userAgent);
 		},
 
-		loadScript: function (url) {
+		loadScript: function (url, cb) {
 			var script = document.createElement('script');
 				script.setAttribute('src', url);
 			document.getElementsByTagName('head')[0].appendChild(script);
+			if (typeof cb === 'function') {
+				script.addEventListener('load', cb);
+			}
 		},
 
 		insertTemplate: function (el, tpl, position) {

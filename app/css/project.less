@@ -56,24 +56,32 @@
 // list view
 
 .projects {
-    //background-color: @bg-projects;
     text-align: left;
     .project {
         padding-bottom: 7%;
         &:first-child {
             padding-top: 100px;
         }
-        img {
-            display: block; // fixes blink jank on button animation
-            margin: 0 auto;
+        .col-md-6.visible-md { // blink jank hover fix
+            padding: 0;
+            overflow: hidden;
         }
     }
     .col-md-6 {
         text-align: center;
     }
+    // images
+    img {
+        background: rgba(0, 0, 0, 0.1);
+        width: 100%;
+        min-height: 60%;
+    }
     .project-text {
-        color: #0B4146;
+        color: #181D20;
         cursor: default;
+        &.col-md-5 { // blink jank hover fix
+            position: inherit;
+        }
     }
     .project-text:nth-child(odd) {
         padding-left: 0;
@@ -83,6 +91,7 @@
         margin-bottom: 30px;
     }
     .project-title {
+        color: #204052;
         font-size: 340%;
         margin-bottom: 40px;
     }
@@ -120,7 +129,7 @@
             .transform(rotate(45deg));
         }
         &:nth-child(2),
-        &:last-child {
+        &:not(.single):last-child {
             border-left: 0;
             margin-left: -10px;
             padding-left: 24px;
@@ -130,6 +139,13 @@
     .project-details {
         font-size: 100%;
         line-height: 200%;
+        p > a {
+            border-bottom: 1px solid @link-color;
+            &:hover {
+                color: darken(@link-color, 10%);
+                border-bottom: 0;
+            }
+        }
     }
     // project launch button
     .btn-project {

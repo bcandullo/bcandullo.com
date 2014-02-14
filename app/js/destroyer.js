@@ -1,10 +1,15 @@
-window.B.canvas = (function (utils) {
+window.B.destroyer = (function (utils) {
 
-	//return false;
+	var bg = $('.body-bg');
+
+	$('.destroyer').addEventListener('mousemove', function (event) {
+		bg.style.webkitTransform = 'perspective(1000) rotate(' + -(window.innerWidth - event.pageX) * 0.01 + 'deg)'
+									+ 'scale(2)';
+	});
 	
 	'use strict';
 
-	var REDRAW_INT = Math.floor(30 - (window.innerWidth / 100)); // ms, higher is slower but easier on cpu
+	var REDRAW_INT = Math.floor(32 - (window.innerWidth / 90)); // ms, higher is slower but easier on cpu
 	var LETTER_DENSITY = 6; // higher = less dense, easier to draw
 	var MAX_DISTANCE = 30; // maxmium explosion distance
 
@@ -352,7 +357,7 @@ window.B.canvas = (function (utils) {
 	}
 	
 	function init () {
-		console.log('destroyer : init');
+		console.log('destroyer : init : ', REDRAW_INT);
 		updateCanvasDimensions();
 		drawCanvasText('DESTROY', postInit);
 		window.setTimeout(preview, 400);

@@ -45,8 +45,7 @@
 				position: relative;
 				top: 3px;
 				left: 20px;
-				color: @peach;
-				//.transition(all 0.1s cubic-bezier(0, 0, 0, 3));
+				color: #C4AF91;
 			}
 		}
 		&.disabled {
@@ -127,6 +126,7 @@
 			padding: 20px;
 			margin-top: 30px;
 			float: right;
+			color: rgba(0, 0, 0, 0.4);
 			.transition(all 0.16s cubic-bezier(0, -0.5, 0, 2));
 			&:hover {
 				.transform(scale(1.4));
@@ -135,7 +135,7 @@
 					.transform(none);
 				}
 			}
-			&:after { // tooltip
+			/*&:after { // tooltip
 				content: attr(data-tip);
 				width: 100px;
 				height: 0;
@@ -146,27 +146,27 @@
 				opacity: 0;
 				.transform(scale(2));
 				.transition(all 0.14s linear 0.01s);
-			}
+			}*/
 		}
 	}
-	.icon-github {
+	.icon-github:hover {
 		color: #ddd;
 	}
-	.icon-twitter {
+	.icon-twitter:hover {
 		color: #00ABF0;
 	}
-	.icon-linkedin {
+	.icon-linkedin:hover {
 		color: #0274B3;
 	}
-	.icon-google-plus {
-		color: #D34434;
+	.icon-google-plus:hover {
+		color: #DD4B39;
 	}
 }
 
 // top button
 
 .btn-top {
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.05);
 	width: 120px;
 	height: 120px;
 	border-radius: 100%;
@@ -174,19 +174,18 @@
 	bottom: -60px;
 	left: 50%;
 	margin-left: -60px;
-	.transition(all 0.1s linear);
+	.transition(all 0.1s ease-in-out);
 	.transform(translate3d(0, 10px, 0));
 	&:hover {
-		background-color: rgba(0, 0, 0, 0.4);
-		.transform(none);
+		.transform(scale(1.3));
 		i {
 			color: #fff;
-			.transform(scale(1.2) translate3d(0, 24px, 0));
+			.transform(scale(1.7) translate3d(0, 16px, 0));
 		}
 	}
 	i {
 		color: rgba(255, 255, 255, 0.3);
+		.transition(all 0.1s ease-in-out);
 		.transform(translate3d(0, 20px, 0));
-		.transition(all 0.1s ease-out);
 	}
 }

@@ -237,7 +237,6 @@ textarea {
   /* 2 */
   margin: 0;
   /* 3 */
-  outline: none;
 }
 /**
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
@@ -1250,6 +1249,9 @@ table {
   .visible-md {
     display: block !important;
   }
+  .visible-md-inline {
+    display: inline !important;
+  }
   body h4 {
     width: 100%;
     text-align: center;
@@ -1336,16 +1338,30 @@ table {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+::selection {
+  background-color: transparent;
+  color: #000;
+  text-shadow: 0 2px 2px #000;
+}
 html,
 body {
   height: 100%;
 }
 body {
-  background: url(../img/blur.jpg) no-repeat fixed;
-  background-size: 100% 100%;
   text-align: center;
   font: 300 100%/160% Rokkitt, sans-serif;
   color: #333333;
+}
+.body-bg {
+  content: ' ';
+  width: 100%;
+  height: 100%;
+  background: url(../img/blur.jpg) no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 canvas {
   width: 100%;
@@ -1356,11 +1372,8 @@ section {
   padding: 100px 0;
 }
 a {
-  color: #3399ee;
+  color: #006dc9;
   text-decoration: none;
-}
-a:hover {
-  color: #333333;
 }
 .intro {
   background-color: rgba(255, 51, 51, 0.6);
@@ -1631,16 +1644,24 @@ i,
 .projects .project:first-child {
   padding-top: 100px;
 }
-.projects .project img {
-  display: block;
-  margin: 0 auto;
+.projects .project .col-md-6.visible-md {
+  padding: 0;
+  overflow: hidden;
 }
 .projects .col-md-6 {
   text-align: center;
 }
+.projects img {
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  min-height: 60%;
+}
 .projects .project-text {
-  color: #0B4146;
+  color: #181D20;
   cursor: default;
+}
+.projects .project-text.col-md-5 {
+  position: inherit;
 }
 .projects .project-text:nth-child(odd) {
   padding-left: 0;
@@ -1650,6 +1671,7 @@ i,
   margin-bottom: 30px;
 }
 .projects .project-title {
+  color: #204052;
   font-size: 340%;
   margin-bottom: 40px;
 }
@@ -1668,8 +1690,8 @@ i,
   text-transform: uppercase;
   margin-right: 6px;
   position: relative;
-  color: #5e9685;
-  border: 1px dashed #7aac9d;
+  color: rgba(0, 0, 0, 0.4);
+  border: 1px dashed rgba(0, 0, 0, 0.4);
   z-index: 2;
   border-right: 0;
 }
@@ -1681,14 +1703,14 @@ i,
   top: 50%;
   right: 0;
   margin: -9px -9px 0 0;
-  border: 1px dashed #6ba291;
+  border: 1px dashed rgba(0, 0, 0, 0.4);
   border-left: 0;
   border-bottom: 0;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
 }
 .projects .project-labels .label:nth-child(2),
-.projects .project-labels .label:last-child {
+.projects .project-labels .label:not(.single):last-child {
   border-left: 0;
   margin-left: -10px;
   padding-left: 24px;
@@ -1697,6 +1719,13 @@ i,
 .projects .project-details {
   font-size: 100%;
   line-height: 200%;
+}
+.projects .project-details p > a {
+  border-bottom: 1px solid #006dc9;
+}
+.projects .project-details p > a:hover {
+  color: #005196;
+  border-bottom: 0;
 }
 .projects .btn-project {
   background: rgba(0, 0, 0, 0.4);
@@ -1890,7 +1919,7 @@ i,
   position: relative;
   top: 3px;
   left: 20px;
-  color: #f6a97d;
+  color: #C4AF91;
 }
 .contact .contact-form.disabled {
   pointer-events: none;
@@ -1966,8 +1995,21 @@ i,
   padding: 20px;
   margin-top: 30px;
   float: right;
+  color: rgba(0, 0, 0, 0.4);
   -webkit-transition: all 0.16s cubic-bezier(0, -0.5, 0, 2);
   -moz-transition: all 0.16s cubic-bezier(0, -0.5, 0, 2);
+  /*&:after { // tooltip
+				content: attr(data-tip);
+				width: 100px;
+				height: 0;
+				position: absolute;
+				top: -10px;
+				left: -10px;
+				font: 24% Rokkitt, sans-serif;
+				opacity: 0;
+				.transform(scale(2));
+				.transition(all 0.14s linear 0.01s);
+			}*/
 }
 .social .col-sm-2 a:hover {
   -webkit-transform: scale(1.4);
@@ -1978,34 +2020,20 @@ i,
   -webkit-transform: none;
   -moz-transform: none;
 }
-.social .col-sm-2 a:after {
-  content: attr(data-tip);
-  width: 100px;
-  height: 0;
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  font: 24% Rokkitt, sans-serif;
-  opacity: 0;
-  -webkit-transform: scale(2);
-  -moz-transform: scale(2);
-  -webkit-transition: all 0.14s linear 0.01s;
-  -moz-transition: all 0.14s linear 0.01s;
-}
-.social .icon-github {
+.social .icon-github:hover {
   color: #ddd;
 }
-.social .icon-twitter {
+.social .icon-twitter:hover {
   color: #00ABF0;
 }
-.social .icon-linkedin {
+.social .icon-linkedin:hover {
   color: #0274B3;
 }
-.social .icon-google-plus {
-  color: #D34434;
+.social .icon-google-plus:hover {
+  color: #DD4B39;
 }
 .btn-top {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.05);
   width: 120px;
   height: 120px;
   border-radius: 100%;
@@ -2013,27 +2041,26 @@ i,
   bottom: -60px;
   left: 50%;
   margin-left: -60px;
-  -webkit-transition: all 0.1s linear;
-  -moz-transition: all 0.1s linear;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
   -webkit-transform: translate3d(0, 10px, 0);
   -moz-transform: translate3d(0, 10px, 0);
 }
 .btn-top:hover {
-  background-color: rgba(0, 0, 0, 0.4);
-  -webkit-transform: none;
-  -moz-transform: none;
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
 }
 .btn-top:hover i {
   color: #fff;
-  -webkit-transform: scale(1.2) translate3d(0, 24px, 0);
-  -moz-transform: scale(1.2) translate3d(0, 24px, 0);
+  -webkit-transform: scale(1.7) translate3d(0, 16px, 0);
+  -moz-transform: scale(1.7) translate3d(0, 16px, 0);
 }
 .btn-top i {
   color: rgba(255, 255, 255, 0.3);
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
   -webkit-transform: translate3d(0, 20px, 0);
   -moz-transform: translate3d(0, 20px, 0);
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
 }
 .intro {
   height: 700px;
@@ -2109,16 +2136,16 @@ i,
   opacity: 0;
 }
 .intro .btn-restart.active {
-  opacity: 0.2;
+  opacity: 0.4;
 }
 .intro .btn-restart.active:hover {
   background-color: rgba(0, 0, 0, 0.1);
-  color: #aff6e0;
+  color: #fff;
   opacity: 1;
 }
 .intro .btn-restart .score {
   font: 90% monospace;
   display: block;
-  color: #fff !important;
+  color: #000 !important;
   margin-top: 6px;
 }
