@@ -24,8 +24,7 @@ window.B.destroyer = (function (utils) {
 		pointCollection,
 		canvasWidth,
 		canvasHeight = $('.intro').offsetHeight,
-		restartButton = $('[data-js=restart]'),
-		touchOrClick = $('html').classList.contains('no-touch') ? 'click' : 'touchstart';
+		restartButton = $('[data-js=restart]');
 
     function drawCanvasText (text, callback) {
 
@@ -105,13 +104,15 @@ window.B.destroyer = (function (utils) {
 	function bindEvents () {
 		//window.addEventListener('resize', updateCanvasDimensions, false);
 		canvas.addEventListener('mousemove', onMove, false);
-		canvas.addEventListener(touchOrClick, onClick, false); //
+		canvas.addEventListener('click', onClick, false);
+		canvas.addEventListener('touchstart', onClick, false);
 		restartButton.addEventListener('click', restart, false);
 	}
 
 	function unbindEvents() {
 		canvas.removeEventListener('mousemove', onMove);
-		canvas.removeEventListener(touchOrClick, onClick);
+		canvas.removeEventListener('click', onClick, false);
+		canvas.removeEventListener('touchstart', onClick, false);
 	}
 	
 	// initial canvas sizing

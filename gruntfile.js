@@ -16,9 +16,9 @@ module.exports = function (grunt) {
                         'app/js/app.js',
                         'app/js/utils.js',
                         'app/js/contact.js',
-                        'app/js/browser.js'
-                    ],
-                    'build/js/canvas.js': ['app/js/browser.js']
+                        'app/js/browser.js',
+                        'app/js/destroyer.js'
+                    ]
                 }
             }
         },
@@ -69,11 +69,42 @@ module.exports = function (grunt) {
             },
             css: {
                 files: '**/*.less',
-                tasks: [ 'less:dev' ],
+                tasks: [ 'less:dev' ]
             },
             html: {
                 files: '**/*.html'
-                // dev html tasks
+            }
+        },
+
+        // minify all images - only jpg is used
+        imagemin: {
+            jpg: {
+                options: {
+                    progressive: true
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'app/img/',
+                        src: ['**/*.jpg'],
+                        dest: 'build/img/',
+                        ext: '.jpg'
+                    }
+                ]
+            }
+        },
+
+        // build js includes - https://github.com/vanetix/grunt-includes
+        includes: {
+            files: {
+                src: ['app/js/browser.js'],
+                dest: 'build/js',
+                flatten: true,
+                cwd: '.',
+                options: {
+                    includeRegexp: /^(\s*)\$include\s+"(\S+)"\s*$/,
+                    duplicates: false
+                }
             }
         }
 
@@ -85,10 +116,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
     //grunt.loadNpmTasks('grunt-contrib-imagemin');
-    // https://npmjs.org/package/grunt-smushit
+    grunt.loadNpmTasks('grunt-includes');
     
     // register tasks for envs
-    grunt.registerTask('dev', [ 'less:dev', 'watch' ]);
-    grunt.registerTask('prod', [ 'less:prod', 'htmlmin', 'uglify' ]);
+    grunt.registerTask('dev', [ 'includes' , 'less:dev', 'watch' ]);
+    grunt.registerTask('prod', [ 'includes', 'less:prod', 'htmlmin', 'uglify' ]);
 
 };

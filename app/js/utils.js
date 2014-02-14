@@ -22,7 +22,7 @@ window.B.utils = (function () {
 	window.$$ = document.querySelectorAll.bind(document);
 
 	/*
-	* check for touch events - ala modernizr
+	* check for touch events
 	*/
 
 	(function touched () {
