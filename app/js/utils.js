@@ -4,6 +4,7 @@ window.B.utils = (function () {
 	* support 1st gen ipad (function.prototype.bind)
 	* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
 	*/
+
 	if (!Function.prototype.bind) {
 		Function.prototype.bind = function (oThis) {
 			var aArgs = Array.prototype.slice.call(arguments, 1), 
@@ -25,12 +26,12 @@ window.B.utils = (function () {
 	* check for touch events
 	*/
 
-	(function touched () {
+	(function () {
   		var isTouch = 'ontouchstart' in window || 'onmsgesturechange' in window,
   			className = isTouch ? 'touch' : 'no-touch';
   		$('html').classList.add(className);
 	}());
-
+	
 	/*
 	* helper functions
 	*/
@@ -74,28 +75,29 @@ window.B.utils = (function () {
 		ajax: function (obj) {
 
 			var req = new XMLHttpRequest(),
-				method = obj.method || 'post';
+				method = obj.method || 'get';
 
-			req.onreadystatechange = function (response) {
-				console.log('ajax : state change : ' + req.readyState);
+			req.onreadystatechange = function () {
 				if (req.readyState === 4) {
-					if (req.status === 200) {
-						console.log('ajax : response from server');
-						obj.success.call();
+					if (req.status === 200 && typeof obj.success === 'function') {
+						obj.success.call(this, req.responseText);
 					}
-				}
-				else {
-					obj.failure.call();
-					throw new Error('ajax : readystate not complete');
-				}
+					else if (typeof obj.failure === 'function') {
+						obj.failure.call();
+					}
+				}	
 			};
 
 			req.open(method, obj.url);
+
+			if (method.toLowerCase() === 'post') {
+				req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			}
+
 			req.send(obj.data);
 
 		}
 
 	}
-
 
 }());

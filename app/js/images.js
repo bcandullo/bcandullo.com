@@ -28,10 +28,10 @@ window.B.images = (function (utils) {
 
 	function imageLoaded (event) {
 		count ++;
-		console.log('images : loaded :', count);
+		//console.log('images : loaded :', count);
 		event.target.removeEventListener('load', imageLoaded);
 		if ((count + 1) >= el.images.length) { // hit at second to last
-			// load project browser if client isnt mobile os
+			// init project browser if client isnt mobile os
 			if (!utils.isMobile() && !loaded) {
 				loadComplete();
 			}
@@ -56,7 +56,7 @@ window.B.images = (function (utils) {
 
 	function onScroll () {
 
-		var y = window.scrollY,
+		var y = window.scrollY || document.documentElement.scrollTop, // document is for ie
 			trigger = (el.intro.offsetHeight / 2) - 400;
 
 		if (y > trigger) {
@@ -75,14 +75,12 @@ window.B.images = (function (utils) {
 			images: $$('img[data-src]')
 		};
 
-
-		window.addEventListener('scroll', onScroll);
+		window.addEventListener('scroll', onScroll, false);
 
 	}
 
 	return {
 		init: init
 	}
-
 
 }(window.B.utils));

@@ -1,30 +1,34 @@
 window.B.destroyer = (function (utils) {
-
-	var bg = $('.body-bg');
-
-	$('.destroyer').addEventListener('mousemove', function (event) {
-		bg.style.webkitTransform = 'perspective(1000) rotate(' + -(window.innerWidth - event.pageX) * 0.01 + 'deg)'
-									+ 'scale(2)';
-	});
 	
 	'use strict';
 
-	var REDRAW_INT = Math.floor(32 - (window.innerWidth / 90)); // ms, higher is slower but easier on cpu
+	var REDRAW_INT = Math.floor(40 - (window.innerWidth / 90)); // ms, higher is slower but easier on cpu
 	var LETTER_DENSITY = 6; // higher = less dense, easier to draw
 	var MAX_DISTANCE = 30; // maxmium explosion distance
 
-	var score = 0,
+	var bg = $('.body-bg'),
+		score = 0,
+		clicks = 0,
 		scoreText = $('.score'),
 		boom = 1,
 		canvas = $('.destroyer'),
 		canvasOffsetY = 320,
 		ctx,
-		clicks = 0,
 		reset = false,
 		pointCollection,
+		isEnabled = true, // flag for scroller module
 		canvasWidth,
 		canvasHeight = $('.intro').offsetHeight,
 		restartButton = $('[data-js=restart]');
+
+	// vendor-secific css transforms for mousemove
+	var transformStyle = (function (vendors) {
+		for (var i = 0, len = vendors.length; i < len; i ++) {
+			if (vendors[i] in canvas.style) {
+				return vendors[i];
+			}
+		}
+	}( ['webkitTransform', 'MozTransform', 'msTransform'] ));
 
     function drawCanvasText (text, callback) {
 
@@ -84,39 +88,42 @@ window.B.destroyer = (function (utils) {
 			c = 0,
 			max = Math.floor( Math.sqrt(window.innerWidth) * 0.5 );
 
-		boom = 4;
+		boom = 1 + Math.floor(Math.random() * 6);
 
 		window.int = window.setInterval(function() {
-
 			if (c > max) {
 				clearInterval(window.int);
+				window.int = null;
 				boom = 1;
 			}
-
 			pointCollection.mousePos.set(c * 70, canvasOffsetY - 30);
 			c += 1;
-
-
 		}, speed);
 
     }
 
 	function bindEvents () {
+		console.log('destroyer : enable events');
 		//window.addEventListener('resize', updateCanvasDimensions, false);
 		canvas.addEventListener('mousemove', onMove, false);
 		canvas.addEventListener('click', onClick, false);
 		canvas.addEventListener('touchstart', onClick, false);
 		restartButton.addEventListener('click', restart, false);
+		(transformStyle) && canvas.addEventListener('mousemove', onBgMouseMove, false);
+		isEnabled = true;
+		window.setTimeout(timeout, 1);
 	}
 
-	function unbindEvents() {
+	function unbindEvents () {
+		console.log('destroyer : disable events');
 		canvas.removeEventListener('mousemove', onMove);
-		canvas.removeEventListener('click', onClick, false);
-		canvas.removeEventListener('touchstart', onClick, false);
+		canvas.removeEventListener('click', onClick);
+		canvas.removeEventListener('touchstart', onClick);
+		isEnabled = false;
 	}
 	
 	// initial canvas sizing
-	function updateCanvasDimensions() {
+	function updateCanvasDimensions () {
 		canvas.setAttribute('width', window.innerWidth);
 		//canvas.setAttribute('height', canvasHeight);
 		canvasWidth = canvas.width;
@@ -124,18 +131,21 @@ window.B.destroyer = (function (utils) {
 	}
 	
 	function setScore (amount) {
-		score += (Math.abs(amount) / 2) >> 0;
-		console.log('destroyer : new score : ' + score);
+		score += Math.floor(Math.abs(amount) / 2);
 	}
 
+	/*
+	* event callbacks
+	*/
+
 	function onClick () {
-    	boom = -(Math.random() * MAX_DISTANCE) - 10; // random explosion size calculation
+    	boom = -(Math.random() * MAX_DISTANCE) - 8; // random explosion size calculation
 		window.setTimeout(function() {
 			boom = 1;
 			if (!restartButton.classList.contains('active')) {
 				restartButton.classList.add('active');
 			}
-		}, 190);
+		}, 90);
 		setScore(boom);
 		clicks ++;
 		scoreText.textContent = score + ' points';
@@ -146,8 +156,28 @@ window.B.destroyer = (function (utils) {
 			pointCollection.mousePos.set(event.pageX, event.pageY);
 		}
 	}
+
+	function onBgMouseMove (event) {
+		bg.style[transformStyle] = 'perspective(1000px) rotate(' + -(window.innerWidth - event.pageX) * 0.01 + 'deg)' + 'scale(2)';
+	}
+
+	function onVisible () {
+		if (document.visibilityState === 'hidden') {
+			unbindEvents();
+		}
+		else {
+			bindEvents();
+		}
+	}
 	
+	/*
+	* core
+	*/
+
 	function timeout () {
+		if (!isEnabled) {
+			return false;
+		}
 		draw();
 		update();
 		window.setTimeout(timeout, REDRAW_INT);
@@ -168,7 +198,7 @@ window.B.destroyer = (function (utils) {
 
 	}
 	
-	function update () {		
+	function update () {	
 		if (pointCollection) {
 			pointCollection.update();
 		}
@@ -181,11 +211,14 @@ window.B.destroyer = (function (utils) {
 		reset = 1;
 		clicks = 0;
 		score = 0;
+		isEnabled = true;
+		// depending on boom size the click event may leave artifacts
+		// so we delay out call to restart drawing
 		window.setTimeout(function () {
 			reset = 0;
 			bindEvents();
-		}, 100);
-	}
+		}, 1000);
+	}		
 	
 	/*
 	* constructors
@@ -362,12 +395,48 @@ window.B.destroyer = (function (utils) {
 		updateCanvasDimensions();
 		drawCanvasText('DESTROY', postInit);
 		window.setTimeout(preview, 400);
+		document.addEventListener('visibilitychange', onVisible, false);
+		window.B.destroyer.scroller.init();
+	}
+
+	function getEnabled() {
+		return isEnabled;
 	}
 
 	return {
 		init: init,
-		destroy: unbindEvents,
-		restart: restart
+		disable: unbindEvents,
+		enable: bindEvents,
+		getEnabled: getEnabled,
+		restart: restart,
+		canvasHeight: canvasHeight
 	};
 
 }(window.B.utils));
+
+/*
+* listens for scroll position to kill expensive
+* and reflow-triggering destroyer listeners when they arent needed
+* flatlining the memory tab = good ux !
+*/
+
+window.B.destroyer.scroller = (function (destroyer) {
+
+	function onScroll () {
+		if ((window.scrollY > destroyer.canvasHeight) && destroyer.getEnabled()) {
+			destroyer.disable();
+		}
+		else if ((window.scrollY < destroyer.canvasHeight) && !destroyer.getEnabled()) {
+			destroyer.enable();
+		}
+	}
+
+	function init () {
+		window.addEventListener('scroll', onScroll, false);
+	}
+
+	return {
+		init: init
+	}
+
+}(window.B.destroyer));

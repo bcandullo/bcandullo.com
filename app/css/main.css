@@ -1144,11 +1144,11 @@ table {
   .visible-md {
     display: none !important;
   }
+  body {
+    overflow-x: hidden;
+  }
   body section {
     padding: 1% 0;
-  }
-  body .intro {
-    padding-top: 160px;
   }
   body .intro .visible-sm {
     width: 90%;
@@ -1159,10 +1159,11 @@ table {
     width: 120%;
     margin-left: -10%;
     padding: 20px;
-    color: #533;
+    color: #BB7878;
+    line-height: 120%;
   }
   body .intro .btn {
-    margin-top: -40px;
+    margin-top: -20px;
   }
   body .section-header {
     text-align: center;
@@ -1193,15 +1194,27 @@ table {
   body .projects .project .btn-project {
     display: none;
   }
+  body .contact {
+    padding-bottom: 20px;
+  }
   body .contact .section-header {
     margin-bottom: 12%;
   }
+  body .contact .status-message h3 {
+    font-size: 300%;
+    line-height: 90%;
+  }
   body .contact .error-message {
+    text-align: center;
     z-index: 1;
   }
   body .contact .btn {
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+  body .social h4 {
+    width: 80%;
+    margin: 40px auto -20px auto;
   }
   body .social a {
     width: 100%;
@@ -1209,9 +1222,29 @@ table {
   body .social a:hover {
     -webkit-transform: none;
     -moz-transform: none;
+    -ms-transform: none;
   }
   body .social a:after {
     display: none !important;
+  }
+  body .social .btn-top {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    left: 0;
+    bottom: -30px;
+    margin: 0;
+    border-radius: 0;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+  }
+  body .social .btn-top i {
+    color: #fff;
+    margin-top: 40px;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
   }
 }
 /* M */
@@ -1417,6 +1450,7 @@ textarea {
   -webkit-border-radius: 0;
   -webkit-transition: box-shadow 0.1s cubic-bezier(0, -1, 0, 2);
   -moz-transition: box-shadow 0.1s cubic-bezier(0, -1, 0, 2);
+  -ms-transition: box-shadow 0.1s cubic-bezier(0, -1, 0, 2);
 }
 input:focus,
 textarea:focus {
@@ -1473,6 +1507,7 @@ i,
   opacity: 0;
   -webkit-transform: translate3d(0, -40px, 0);
   -moz-transform: translate3d(0, -40px, 0);
+  -ms-transform: translate3d(0, -40px, 0);
 }
 .btn-status.loading .status-animation {
   opacity: 1;
@@ -1488,22 +1523,28 @@ i,
 .btn-status.loading .status-animation i:nth-child(1) {
   -webkit-animation: status 0.6s 0.14s linear infinite alternate 300ms 0 ease;
   -moz-animation: status 0.6s 0.14s linear infinite alternate 300ms 0 ease;
+  -ms-animation: status 0.6s 0.14s linear infinite alternate 300ms 0 ease;
   -webkit-animation: status 0.6s 0.14s linear infinite alternate;
   -moz-animation: status 0.6s 0.14s linear infinite alternate;
+  -ms-animation: status 0.6s 0.14s linear infinite alternate;
   animation: status 0.6s 0.14s linear infinite alternate;
 }
 .btn-status.loading .status-animation i:nth-child(2) {
   -webkit-animation: status 0.6s 0.24s linear infinite alternate 300ms 0 ease;
   -moz-animation: status 0.6s 0.24s linear infinite alternate 300ms 0 ease;
+  -ms-animation: status 0.6s 0.24s linear infinite alternate 300ms 0 ease;
   -webkit-animation: status 0.6s 0.24s linear infinite alternate;
   -moz-animation: status 0.6s 0.24s linear infinite alternate;
+  -ms-animation: status 0.6s 0.24s linear infinite alternate;
   animation: status 0.6s 0.24s linear infinite alternate;
 }
 .btn-status.loading .status-animation i:nth-child(3) {
   -webkit-animation: status 0.6s 0.34s linear infinite alternate 300ms 0 ease;
   -moz-animation: status 0.6s 0.34s linear infinite alternate 300ms 0 ease;
+  -ms-animation: status 0.6s 0.34s linear infinite alternate 300ms 0 ease;
   -webkit-animation: status 0.6s 0.34s linear infinite alternate;
   -moz-animation: status 0.6s 0.34s linear infinite alternate;
+  -ms-animation: status 0.6s 0.34s linear infinite alternate;
   animation: status 0.6s 0.34s linear infinite alternate;
 }
 .btn-status .status-animation {
@@ -1515,6 +1556,7 @@ i,
   opacity: 0;
   -webkit-transition: all 0.1s ease-out;
   -moz-transition: all 0.1s ease-out;
+  -ms-transition: all 0.1s ease-out;
 }
 .btn-text {
   width: 50%;
@@ -1523,17 +1565,20 @@ i,
   left: 25%;
   -webkit-transition: all 0.1s ease-out;
   -moz-transition: all 0.1s ease-out;
+  -ms-transition: all 0.1s ease-out;
 }
 @-webkit-keyframes status {
   from {
     opacity: 0;
     -webkit-transform: scale(0.4);
     -moz-transform: scale(0.4);
+    -ms-transform: scale(0.4);
   }
   to {
     opacity: 1;
     -webkit-transform: scale(1.3);
     -moz-transform: scale(1.3);
+    -ms-transform: scale(1.3);
   }
 }
 @-moz-keyframes status {
@@ -1541,11 +1586,13 @@ i,
     opacity: 0;
     -webkit-transform: scale(0.4);
     -moz-transform: scale(0.4);
+    -ms-transform: scale(0.4);
   }
   to {
     opacity: 1;
     -webkit-transform: scale(1.3);
     -moz-transform: scale(1.3);
+    -ms-transform: scale(1.3);
   }
 }
 @-ms-keyframes status {
@@ -1553,11 +1600,13 @@ i,
     opacity: 0;
     -webkit-transform: scale(0.4);
     -moz-transform: scale(0.4);
+    -ms-transform: scale(0.4);
   }
   to {
     opacity: 1;
     -webkit-transform: scale(1.3);
     -moz-transform: scale(1.3);
+    -ms-transform: scale(1.3);
   }
 }
 @-o-keyframes status {
@@ -1565,11 +1614,13 @@ i,
     opacity: 0;
     -webkit-transform: scale(0.4);
     -moz-transform: scale(0.4);
+    -ms-transform: scale(0.4);
   }
   to {
     opacity: 1;
     -webkit-transform: scale(1.3);
     -moz-transform: scale(1.3);
+    -ms-transform: scale(1.3);
   }
 }
 @keyframes status {
@@ -1577,11 +1628,13 @@ i,
     opacity: 0;
     -webkit-transform: scale(0.4);
     -moz-transform: scale(0.4);
+    -ms-transform: scale(0.4);
   }
   to {
     opacity: 1;
     -webkit-transform: scale(1.3);
     -moz-transform: scale(1.3);
+    -ms-transform: scale(1.3);
   }
 }
 .chrome-header {
@@ -1611,6 +1664,7 @@ i,
   border-radius: 3px;
   -webkit-transform: perspective(200px) rotateX(50deg);
   -moz-transform: perspective(200px) rotateX(50deg);
+  -ms-transform: perspective(200px) rotateX(50deg);
 }
 .chrome-header .chrome-buttons,
 .chrome-header .chrome-buttons:before,
@@ -1707,6 +1761,7 @@ i,
   border-bottom: 0;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
 }
 .projects .project-labels .label:nth-child(2),
 .projects .project-labels .label:not(.single):last-child {
@@ -1746,10 +1801,12 @@ i,
 .projects .btn-project:hover .icon-arrow-up-right {
   -webkit-transform: none;
   -moz-transform: none;
+  -ms-transform: none;
 }
 .projects .btn-project:hover .btn-text span {
   -webkit-transform: translate3d(0, 40px, 0);
   -moz-transform: translate3d(0, 40px, 0);
+  -ms-transform: translate3d(0, 40px, 0);
 }
 .projects .btn-project:active {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.4), inset 0 0 0 2px #aff6e0;
@@ -1761,13 +1818,16 @@ i,
   font-size: 120%;
   -webkit-transform: translate3d(0, -40px, 0);
   -moz-transform: translate3d(0, -40px, 0);
+  -ms-transform: translate3d(0, -40px, 0);
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
 }
 .projects .btn-project .btn-text span {
   display: inline-block;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
 }
 .projects .btn-project.btn-link .btn-text span {
   position: relative;
@@ -1787,6 +1847,7 @@ i,
   opacity: 1;
   -webkit-transform: none;
   -moz-transform: none;
+  -ms-transform: none;
 }
 .browser .project-header {
   position: fixed;
@@ -1806,6 +1867,7 @@ i,
   opacity: 0;
   -webkit-transition: opacity 0.2s linear;
   -moz-transition: opacity 0.2s linear;
+  -ms-transition: opacity 0.2s linear;
 }
 .browser .project-nav button {
   background-color: rgba(0, 0, 0, 0.2);
@@ -1833,8 +1895,10 @@ i,
   z-index: 2;
   -webkit-transition: all 0.16s ease-out;
   -moz-transition: all 0.16s ease-out;
+  -ms-transition: all 0.16s ease-out;
   -webkit-transform: translate3d(0, -1%, 0) scale(0.9);
   -moz-transform: translate3d(0, -1%, 0) scale(0.9);
+  -ms-transform: translate3d(0, -1%, 0) scale(0.9);
 }
 .browser .project-display img {
   position: relative;
@@ -1852,10 +1916,12 @@ i,
   overflow: hidden;
   -webkit-transition: all 0.16s ease-in-out;
   -moz-transition: all 0.16s ease-in-out;
+  -ms-transition: all 0.16s ease-in-out;
 }
 .sections.inactive {
   -webkit-transform: scale(0.9);
   -moz-transform: scale(0.9);
+  -ms-transform: scale(0.9);
 }
 .section-header {
   margin-bottom: 7%;
@@ -1902,6 +1968,7 @@ i,
   color: rgba(0, 0, 0, 0.2);
   -webkit-transform: scale(1.6) rotate(20deg) translate3d(0, 3px, 0);
   -moz-transform: scale(1.6) rotate(20deg) translate3d(0, 3px, 0);
+  -ms-transform: scale(1.6) rotate(20deg) translate3d(0, 3px, 0);
 }
 .contact .contact-form .btn-submit:active {
   background-color: rgba(0, 0, 0, 0.2);
@@ -1924,33 +1991,67 @@ i,
   pointer-events: none;
 }
 .contact .contact-form.sent {
-  opacity: 0;
-  -webkit-transition: opacity 0.3s ease-out;
-  -moz-transition: opacity 0.3s ease-out;
+  display: none;
 }
-.message {
+.contact .status-message {
+  background: rgba(255, 255, 255, 0.1);
   width: 60%;
-  position: absolute;
+  position: relative;
   left: 30%;
   margin-left: -10%;
   opacity: 0;
+  padding: 40px 20px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
   -webkit-transition: opacity 0.1s linear 0.2s;
   -moz-transition: opacity 0.1s linear 0.2s;
+  -ms-transition: opacity 0.1s linear 0.2s;
 }
-.message.active {
+.contact .status-message.active {
   opacity: 1;
 }
-.success-message h3,
-.failure-message h3 {
+.contact .status-message h3 {
   font-size: 600%;
-  margin: 40px;
+}
+.contact .status-message i {
+  background-color: #3ea;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  margin: 20px 0;
+  position: relative;
+}
+.contact .status-message i:before {
+  font-size: 400%;
+  color: #fff;
+  display: block;
+  margin-top: 20px;
+}
+.contact .status-message i:after {
+  content: ' ';
+  background-color: #3ea;
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  margin-left: -9px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+}
+.contact .status-message.failure i {
+  background-color: #a03f26;
+}
+.contact .status-message.failure i:after {
+  background-color: #a03f26;
 }
 .error-message {
   background: #a03f26;
   width: auto;
   display: inline-block;
   color: #fff;
-  padding: 4px 20px;
+  padding: 6px 20px 4px 20px;
   margin-left: 15px;
   opacity: 0;
   position: absolute;
@@ -1958,6 +2059,7 @@ i,
   text-align: left;
   -webkit-transform: translate3d(0, -90px, 0);
   -moz-transform: translate3d(0, -90px, 0);
+  -ms-transform: translate3d(0, -90px, 0);
   -webkit-transition: -webkit-transform 0.1s ease-in-out 0.1s, opacity 0.1s linear 0.15s;
   -moz-transition: -moz-transform 0.1s ease-in-out 0.1s, opacity 0.1s linear 0.15s;
   transition: transform 0.1s ease-in-out 0.1s, opacity 0.1s linear 0.15s;
@@ -1967,6 +2069,7 @@ i,
   opacity: 1;
   -webkit-transform: translate3d(0, -31px, 0);
   -moz-transform: translate3d(0, -31px, 0);
+  -ms-transform: translate3d(0, -31px, 0);
 }
 .error-message .icon-warning {
   font-size: 120%;
@@ -1979,6 +2082,7 @@ i,
   border-color: #a03f26;
   -webkit-transition: box-shadow 0.2s ease-out;
   -moz-transition: box-shadow 0.2s ease-out;
+  -ms-transition: box-shadow 0.2s ease-out;
 }
 .social {
   position: relative;
@@ -1997,27 +2101,18 @@ i,
   color: rgba(0, 0, 0, 0.4);
   -webkit-transition: all 0.16s cubic-bezier(0, -0.5, 0, 2);
   -moz-transition: all 0.16s cubic-bezier(0, -0.5, 0, 2);
-  /*&:after { // tooltip
-				content: attr(data-tip);
-				width: 100px;
-				height: 0;
-				position: absolute;
-				top: -10px;
-				left: -10px;
-				font: 24% Rokkitt, sans-serif;
-				opacity: 0;
-				.transform(scale(2));
-				.transition(all 0.14s linear 0.01s);
-			}*/
+  -ms-transition: all 0.16s cubic-bezier(0, -0.5, 0, 2);
 }
 .social .col-sm-2 a:hover {
   -webkit-transform: scale(1.4);
   -moz-transform: scale(1.4);
+  -ms-transform: scale(1.4);
 }
 .social .col-sm-2 a:hover:after {
   opacity: 1;
   -webkit-transform: none;
   -moz-transform: none;
+  -ms-transform: none;
 }
 .social .icon-github:hover {
   color: #ddd;
@@ -2039,27 +2134,34 @@ i,
   position: absolute;
   bottom: -60px;
   left: 50%;
+  z-index: 1;
   margin-left: -60px;
   -webkit-transition: all 0.1s ease-in-out;
   -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
   -webkit-transform: translate3d(0, 10px, 0);
   -moz-transform: translate3d(0, 10px, 0);
+  -ms-transform: translate3d(0, 10px, 0);
 }
 .btn-top:hover {
   -webkit-transform: scale(1.3);
   -moz-transform: scale(1.3);
+  -ms-transform: scale(1.3);
 }
 .btn-top:hover i {
   color: #fff;
   -webkit-transform: scale(1.7) translate3d(0, 16px, 0);
   -moz-transform: scale(1.7) translate3d(0, 16px, 0);
+  -ms-transform: scale(1.7) translate3d(0, 16px, 0);
 }
 .btn-top i {
   color: rgba(255, 255, 255, 0.3);
   -webkit-transition: all 0.1s ease-in-out;
   -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
   -webkit-transform: translate3d(0, 20px, 0);
   -moz-transform: translate3d(0, 20px, 0);
+  -ms-transform: translate3d(0, 20px, 0);
 }
 .intro {
   height: 700px;
@@ -2092,6 +2194,7 @@ i,
   opacity: 0.5;
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
 }
 .intro .btn-projects:hover .btn-text {
   background-color: rgba(255, 255, 255, 0.06);
@@ -2104,13 +2207,16 @@ i,
   color: rgba(255, 255, 255, 0.1);
   -webkit-transition: all 0.2s cubic-bezier(0, -1, 0, 1) 0.08s;
   -moz-transition: all 0.2s cubic-bezier(0, -1, 0, 1) 0.08s;
+  -ms-transition: all 0.2s cubic-bezier(0, -1, 0, 1) 0.08s;
   -webkit-transform: scale(0.7) rotate(90deg) translate3d(-10px, 0, 0);
   -moz-transform: scale(0.7) rotate(90deg) translate3d(-10px, 0, 0);
+  -ms-transform: scale(0.7) rotate(90deg) translate3d(-10px, 0, 0);
 }
 .intro .btn-projects:hover i {
   color: #AFF6E0;
   -webkit-transform: rotate(90deg) translate3d(20px, 0, 0);
   -moz-transform: rotate(90deg) translate3d(20px, 0, 0);
+  -ms-transform: rotate(90deg) translate3d(20px, 0, 0);
 }
 .intro .destroyer {
   height: 700px;

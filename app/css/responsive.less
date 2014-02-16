@@ -34,15 +34,14 @@
 		display: none !important;
 	}
 
+	// global
+
 	body {
-
-		// global
-
+		overflow-x: hidden;
 		section {
 			padding: 1% 0;
 		}
 		.intro {
-			padding-top: 160px;
 			.visible-sm {
 				width: 90%;
 				margin: 0 auto;
@@ -52,10 +51,11 @@
 				width: 120%;
 				margin-left: -10%;
 				padding: 20px;
-				color: #533;
+				color: #BB7878;
+				line-height: 120%;
 			}
 			.btn {
-				margin-top: -40px;
+				margin-top: -20px;
 			}
 		}
 		.section-header {
@@ -94,10 +94,16 @@
 		// contact
 
 		.contact {
+			padding-bottom: 20px;
 			.section-header {
 				margin-bottom: 12%;
 			}
+			.status-message h3 {
+				font-size: 300%;
+				line-height: 90%;
+			}
 			.error-message {
+				text-align: center;
 				z-index: 1;
 			}
 			.btn {
@@ -105,13 +111,34 @@
 				padding-right: 0 !important;
 			}
 		}
-		.social a {
-			width: 100%;
-			&:hover {
-				.transform(none);
+		.social {
+			h4 {
+				width: 80%;
+				margin: 40px auto -20px auto;
 			}
-			&:after {
-				display: none !important;
+			a {
+				width: 100%;
+				&:hover {
+					.transform(none);
+				}
+				&:after {
+					display: none !important;
+				}
+			}
+			.btn-top {
+				width: 100%;
+				display: inline-block;
+				position: relative;
+				left: 0;
+				bottom: -30px;
+				margin: 0;
+				border-radius: 0;
+				.transform(none);
+				i {
+					color: #fff;
+					margin-top: 40px;
+					.transform(none);
+				}
 			}
 		}
 

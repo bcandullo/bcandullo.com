@@ -6,7 +6,6 @@ window.B.browser = (function (utils) {
 		clickedButton, // button that launched the browser
 		current = 0, // current image in json
 		path = 'img/projects/', // root of all project images
-		extension = '.jpg', // should always be jpgs
 		currentProject, // stores currently viewed project
 		currentScroll = 0;
 
@@ -86,7 +85,6 @@ window.B.browser = (function (utils) {
 
 		var	image = projects[currentProject].images['image_' + current],
 			imageUrl = path + currentProject + '/' + image;
-			imageUrl += extension,
 			delay = delay || 0;
 
 		console.log('browser : load :', imageUrl);
@@ -159,13 +157,13 @@ window.B.browser = (function (utils) {
 
 	}
 
-	function bindElements () {
+	function bindEvents () {
 		el.buttons.forEach(function (el, key) {
 			el.addEventListener('click', fn[el.getAttribute('data-js')], false);
 		});
 	}
 
-	function unbindElements () {
+	function unbindEvents () {
 		el.buttons.forEach(function (el, key) {
 			el.removeEventListener('click', fn[el.getAttribute('data-js')]);
 		});
@@ -190,7 +188,7 @@ window.B.browser = (function (utils) {
 		};
 
 		// bind input on elements
-		bindElements();
+		bindEvents();
 
 	}
 

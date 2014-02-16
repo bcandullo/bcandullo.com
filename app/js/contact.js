@@ -7,9 +7,9 @@ window.B.contact = (function (utils) {
 			name: 'What is your name?',
 			email: 'Invalid email address',
 			message: 'Enter a message',
-			success: '<h3>Thanks!</h3> Hey, your message was sent.',
-			failure: '<h3>Oh No!</h3> There was an error sending your message. '
-					+ 'Would you like to <a href="mailto:brad@bcandullo.com" target="_blank">open an email message?</a>'
+			success: '<i class="icon-paper-plane"></i><h3>Thanks!</h3>Your message was successfully sent.',
+			failure: '<i class="icon-warning"></i><h3>Oh No!</h3> There was an error sending your message. '
+					+ 'Would you like to <a href="mailto:brizad@gmail.com" target="_blank">open an email message?</a>'
 		};
 
 	/*
@@ -56,30 +56,33 @@ window.B.contact = (function (utils) {
 
 		console.log('form : error : ' + type);
 
+		var element = el[type];
+
 		// format error message
 		el.error.classList.add('active');
-		el.error.style.cssText = 'top: ' + (el[type].parentElement.offsetTop) + 'px'
-								+ '; left: ' + el[type].parentElement.offsetLeft + 'px';
+		el.error.style.cssText = 'top: ' + element.parentElement.offsetTop + 'px'
+								+ '; left: ' + element.parentElement.offsetLeft + 'px'
+								+ '; width: ' + (utils.isMobile() ? window.getComputedStyle(element).width : 'auto');
 
 		el.errorText.textContent = messages[type];
 
 		// class parent (row) node
-		el[type].parentNode.classList.add('error');
+		element.parentNode.classList.add('error');
 
 		// listen for change
-		el[type].addEventListener('keyup', listenForValidation, false);
-		el[type].focus();
+		element.addEventListener('keyup', listenForValidation, false);
+		element.focus();
 
 	}
 
 	function toggleForm (bool) {
 		if (bool === true) {
 			el.form.classList.add('disabled');
-			unbindElements();
+			unbindEvents();
 		}
 		else {
 			el.form.classList.remove('disabled');
-			bindElements();
+			bindEvents();
 		}
 	}
 
@@ -87,47 +90,54 @@ window.B.contact = (function (utils) {
 
 		console.log('form : sending...');
 
-		el.submit.classList.add('loading');
-
-		// disable form
-		toggleForm(true);
+		var query = [],
+			key;
 
 		// callback for ajax success
-		var success = function () {
-			el.status.success.innerHTML = messages.success;
-			el.status.success.classList.add('active');
-			el.form.classList.add('sent');
+		var success = function (response) {
+			if (response === '1') {
+				console.log('form : success from server');
+				el.status.innerHTML = messages.success;
+				el.status.classList.add('active', 'success');
+				el.form.classList.add('sent');
+			}
+			else {
+				failure();
+			}
 		};
 
 		// callback for any ajax error
 		var failure = function () {
-			el.status.failure.innerHTML = messages.failure;
-			el.status.failure.classList.add('active');
+			el.status.innerHTML = messages.failure;
+			el.status.classList.add('active', 'failure');
 			el.form.classList.add('sent');
+			throw new Error('form : error');
 		}
 
-		// build data
+		// base data object
 		var data = {
 			user: el.name.value,
 			email: el.email.value,
 			message: el.message.value
 		};
 
-		// for testing
-		setTimeout(function () {
-			el.submit.classList.remove('loading');
-			toggleForm(false);
-		}, 3000);
-
-		return false;
+		// transform data to post-friendly url
+	    for (key in data) {
+	        query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+	    }
 
 		// send xhr
 		utils.ajax({
-			url: 'http://128.0.0.1',
-			data: JSON.stringify(data),
+			url: 'server/contact.php',
+			data: query.join('&'),
+			method: 'post',
 			success: success,
-			failure: success
+			failure: failure
 		});
+
+		// disable form
+		el.submit.classList.add('loading');
+		toggleForm(true);
 		
 	}
 
@@ -157,11 +167,11 @@ window.B.contact = (function (utils) {
 
 	}
 
-	function bindElements () {
+	function bindEvents () {
 		el.submit.addEventListener('click', validate, false);
 	}
 
-	function unbindElements () {
+	function unbindEvents () {
 		el.submit.removeEventListener('click', validate);
 	}
 
@@ -182,14 +192,11 @@ window.B.contact = (function (utils) {
 			submit: $('[data-js=validate]'),
 			error: $('.error-message'),
 			errorText: $('.error-message-text'),
-			status: {
-				failure: $('.success-message'),
-				success: $('.success-message')
-			}
+			status: $('.status-message')
 		};
 
 		// bind input on elements
-		bindElements();
+		bindEvents();
 
 	}
 
