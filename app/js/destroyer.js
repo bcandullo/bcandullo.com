@@ -2,7 +2,7 @@ window.B.destroyer = (function (utils) {
 	
 	'use strict';
 
-	var REDRAW_INT = Math.floor(40 - (window.innerWidth / 90)); // ms, higher is slower but easier on cpu
+	var REDRAW_INT = (10 + Math.floor(20 - (window.innerWidth / 100))); // ms, higher is slower but easier on cpu
 	var LETTER_DENSITY = 6; // higher = less dense, easier to draw
 	var MAX_DISTANCE = 30; // maxmium explosion distance
 
@@ -21,7 +21,7 @@ window.B.destroyer = (function (utils) {
 		canvasHeight = $('.intro').offsetHeight,
 		restartButton = $('[data-js=restart]');
 
-	// vendor-secific css transforms for mousemove
+	// vendor-specific transforms for mousemove
 	var transformStyle = (function (vendors) {
 		for (var i = 0, len = vendors.length; i < len; i ++) {
 			if (vendors[i] in canvas.style) {
@@ -44,7 +44,8 @@ window.B.destroyer = (function (utils) {
         var imagedata = ctx.getImageData(0, 0, imgwidth, canvasHeight),
         	x, y,
         	idWidth = imagedata.width,
-        	idHeight = imagedata.height;
+        	idHeight = imagedata.height,
+        	idData = imagedata.data; // cached data performs slightly faster
 
         for (x = 0; x < idWidth; x += LETTER_DENSITY) {
 
@@ -52,22 +53,22 @@ window.B.destroyer = (function (utils) {
 
                 var index = (y * 4) * idWidth + x * 4;
                 
-                var r = imagedata.data[index],
-                	g = imagedata.data[index + 1],
-                	b = imagedata.data[index + 2],
-                	a = imagedata.data[index + 3];
+                var r = idData[index],
+                	g = idData[index + 1],
+                	b = idData[index + 2],
+                	a = idData[index + 3];
                 
                 if (r | g | b | a) {
-                        var p = new Point(x + canvasWidth / 2 - imgwidth / 2,
+                    var p = new Point(x + canvasWidth / 2 - imgwidth / 2,
                         					y,
 											0.0, 
 											LETTER_DENSITY / 2);
                         
-                        points.push(p);
+					points.push(p);
                 }
-            };
+            }
 
-        };
+        }
 
         if (typeof callback === 'function') {
         	callback(points);
@@ -78,15 +79,15 @@ window.B.destroyer = (function (utils) {
     function postInit (points) {
         pointCollection = new PointCollection();
         pointCollection.points = points;
+        window.setTimeout(preview, 300);
         bindEvents();
-        timeout();
     }
 
     function preview () {
 
-		var speed = 10,
+		var speed = 30,
 			c = 0,
-			max = Math.floor( Math.sqrt(window.innerWidth) * 0.5 );
+			max = Math.floor(Math.sqrt(window.innerWidth) * 0.5);
 
 		boom = 1 + Math.floor(Math.random() * 6);
 
@@ -104,7 +105,7 @@ window.B.destroyer = (function (utils) {
 
 	function bindEvents () {
 		console.log('destroyer : enable events');
-		//window.addEventListener('resize', updateCanvasDimensions, false);
+		window.addEventListener('resize', updateCanvasDimensions, false);
 		canvas.addEventListener('mousemove', onMove, false);
 		canvas.addEventListener('click', onClick, false);
 		canvas.addEventListener('touchstart', onClick, false);
@@ -187,11 +188,13 @@ window.B.destroyer = (function (utils) {
 
 		if (canvas.getContext === null) {
 			return; 
-		};
+		}
 
+		// update canvas
 		ctx = canvas.getContext('2d');
 		ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
+		// draw point
 		if (pointCollection) {
 			pointCollection.draw();
 		}
@@ -301,31 +304,27 @@ window.B.destroyer = (function (utils) {
 
 				point.update();
 
-			};
+			}
+
 		};
 		
 		this.draw = function () {
 
-			var pointsLength = this.points.length,
-				point,
-				i;
+			var point;
 
-			for (i = 0; i < pointsLength; i ++) {
-
+			for (var i = 0, len = this.points.length; i < len; i ++) {
 				point = this.points[i];
-				
 				if (point === null) {
 					continue;
 				}
-
 				point.draw();
-			};
+			}
 
 		};
 
 	}
 	
-	function Point (x, y, z, size, color) {
+	function Point (x, y, z, size) {
 
 		this.curPos = new Vector(x, y, z);
 		this.friction = 0.3;
@@ -394,7 +393,6 @@ window.B.destroyer = (function (utils) {
 		console.log('destroyer : init : ', REDRAW_INT);
 		updateCanvasDimensions();
 		drawCanvasText('DESTROY', postInit);
-		window.setTimeout(preview, 400);
 		document.addEventListener('visibilitychange', onVisible, false);
 		window.B.destroyer.scroller.init();
 	}
