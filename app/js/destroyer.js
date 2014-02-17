@@ -103,7 +103,7 @@ window.B.destroyer = (function (utils) {
 
     }
 
-	function bindEvents () {
+	function bindEvents (skipDraw) {
 		console.log('destroyer : enable events');
 		window.addEventListener('resize', updateCanvasDimensions, false);
 		canvas.addEventListener('mousemove', onMove, false);
@@ -112,7 +112,8 @@ window.B.destroyer = (function (utils) {
 		restartButton.addEventListener('click', restart, false);
 		(transformStyle) && canvas.addEventListener('mousemove', onBgMouseMove, false);
 		isEnabled = true;
-		window.setTimeout(timeout, 1);
+		// skip draw so we don't double-up on drawing recursion
+		!skipDraw && window.setTimeout(timeout, 1);
 	}
 
 	function unbindEvents () {
@@ -182,6 +183,7 @@ window.B.destroyer = (function (utils) {
 		draw();
 		update();
 		window.setTimeout(timeout, REDRAW_INT);
+
 	}
 	
 	function draw () {
@@ -219,7 +221,7 @@ window.B.destroyer = (function (utils) {
 		// so we delay out call to restart drawing
 		window.setTimeout(function () {
 			reset = 0;
-			bindEvents();
+			bindEvents(true);
 		}, 1000);
 	}		
 	

@@ -24,12 +24,13 @@ window.B.utils = (function () {
 
 	/*
 	* check for touch events
+	* also, webkit
 	*/
 
 	(function () {
   		var isTouch = 'ontouchstart' in window || 'onmsgesturechange' in window,
-  			className = isTouch ? 'touch' : 'no-touch';
-  		$('html').classList.add(className);
+  			classes = [isTouch ? 'touch' : 'no-touch'];
+  		DOMTokenList.prototype.add.apply($('html').classList, classes);
 	}());
 	
 	/*
