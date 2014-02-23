@@ -7,7 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="description" content="ux designer | developer &dash;&gt; brad candullo">
 	<link rel="icon" type="image/png" href="img/icon.png">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
+	<link rel="stylesheet" type="text/css" href="../build/css/build.css">
 </head>
 <body>
 
@@ -51,46 +52,6 @@
 		<section class="projects">
 
 			<a name="projects"></a>
-
-			<div class="project">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="chrome-header">
-								<div class="chrome-buttons"></div>
-							</div>
-							<img data-src="img/projects/albm/0-small.jpg" class="img-responsive">
-						</div>
-						<div class="project-text col-md-5 col-md-offset-1">
-							<header class="project-header">
-								<h3 class="project-title">
-									Albm
-								</h3>
-								<ul class="project-labels">
-									<li class="label">ui / ux</li>
-									<li class="label">prototyping</li>
-								</ul>
-							</header>
-							<div class="project-details">
-								<p>
-									User interface design and client-side prototyping for a conceptual consumer product. Albm lets users create a media album from any social website, even old myspace photos.
-								</p>
-								<button class="btn btn-project btn-status" data-project="albm" data-js="browser">
-									<span class="btn-text">
-										<span>Launch</span>
-										<i class="icon-arrow-up-right"></i>
-									</span>
-									<span class="status-animation">
-										<i></i>
-										<i></i>
-										<i></i>
-									</span>
-								</button>
-							</div>
-						</div><!-- /.project-text -->
-					</div>
-				</div>
-			</div><!-- /.project -->
 
 			<div class="project">
 				<div class="container">
@@ -143,12 +104,14 @@
 							<div class="chrome-header">
 								<div class="chrome-buttons"></div>
 							</div>
-							<img data-src="img/projects/beach/0-small.jpg" class="img-responsive">
+							<a href="http://flyerapp.com" target="_blank" rel="nofollow">
+								<img data-src="img/projects/flyer/0-small.jpg" class="img-responsive">
+							</a>
 						</div>
 						<div class="project-text col-md-5 col-md-offset-1">
 							<header class="project-header">
 								<h3 class="project-title">
-									Beach
+									Flyer
 								</h3>
 								<ul class="project-labels">
 									<li class="label">ui / ux</li>
@@ -157,19 +120,14 @@
 							</header>
 							<div class="project-details">
 								<p>
-									There is nothing like the beach; I'll let the designs speak for themselves. New website will be spinning up soon, powered by some lovely Python/Django from Serverzen.
+									Front-end development utilizing Backbone.js for event aggregation app, Flyer. The <a href="https://itunes.apple.com/us/app/flyer-app/id598865990?ls=1&amp;mt=8" rel="nofollow" target="_blank">iOS app</a> is a must for NYC.
 								</p>
-								<button class="btn btn-project btn-status" data-project="beach" data-js="browser">
+								<a href="http://flyerapp.com" target="_blank" rel="nofollow" class="btn btn-project btn-link">
 									<span class="btn-text">
 										<span>Launch</span>
 										<i class="icon-arrow-up-right"></i>
 									</span>
-									<span class="status-animation">
-										<i></i>
-										<i></i>
-										<i></i>
-									</span>
-								</button>
+								</a>
 							</div>
 						</div><!-- /.project-text -->
 					</div>
@@ -224,14 +182,49 @@
 							<div class="chrome-header">
 								<div class="chrome-buttons"></div>
 							</div>
-							<a href="http://flyerapp.com" target="_blank" rel="nofollow">
-								<img data-src="img/projects/flyer/0-small.jpg" class="img-responsive">
-							</a>
+							<img data-src="img/projects/albm/0-small.jpg" class="img-responsive">
 						</div>
 						<div class="project-text col-md-5 col-md-offset-1">
 							<header class="project-header">
 								<h3 class="project-title">
-									Flyer
+									Albm
+								</h3>
+								<ul class="project-labels">
+									<li class="label">ui / ux</li>
+									<li class="label">prototyping</li>
+								</ul>
+							</header>
+							<div class="project-details">
+								<p>
+									User interface design and client-side prototyping for a conceptual consumer product. Albm lets users create a media album from any social website, even old myspace photos.
+								</p>
+								<button class="btn btn-project btn-status" data-project="albm" data-js="browser">
+									<span class="btn-text">
+										<span>Launch</span>
+										<i class="icon-arrow-up-right"></i>
+									</span>
+									<span class="status-animation">
+										<i></i>
+										<i></i>
+										<i></i>
+									</span>
+								</button>
+							</div>
+						</div><!-- /.project-text -->
+					</div>
+				</div>
+			</div><!-- /.project -->
+
+			<div class="project">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 visible-sm">
+							<img data-src="img/projects/beach/0-small.jpg" class="img-responsive">
+						</div>
+						<div class="project-text col-md-5">
+							<header class="project-header">
+								<h3 class="project-title">
+									Beach
 								</h3>
 								<ul class="project-labels">
 									<li class="label">ui / ux</li>
@@ -240,23 +233,34 @@
 							</header>
 							<div class="project-details">
 								<p>
-									Some details aboot the flyer app project will go here. The <a href="https://itunes.apple.com/us/app/flyer-app/id598865990?ls=1&amp;mt=8" rel="nofollow" target="_blank">iOS app</a> is a must have for NYC.
+									There is nothing like the beach; I'll let the designs speak for themselves. New website will be spinning up soon, powered by some lovely Python/Django from Serverzen.
 								</p>
-								<a href="http://flyerapp.com" target="_blank" rel="nofollow" class="btn btn-project btn-link">
+								<button class="btn btn-project btn-status" data-project="beach" data-js="browser">
 									<span class="btn-text">
 										<span>Launch</span>
 										<i class="icon-arrow-up-right"></i>
 									</span>
-								</a>
+									<span class="status-animation">
+										<i></i>
+										<i></i>
+										<i></i>
+									</span>
+								</button>
 							</div>
 						</div><!-- /.project-text -->
+						<div class="col-md-6 col-md-offset-1 visible-md">
+							<div class="chrome-header">
+								<div class="chrome-buttons"></div>
+							</div>
+							<img data-src="img/projects/beach/0-small.jpg" class="img-responsive">
+						</div>
 					</div>
 				</div>
 			</div><!-- /.project -->
 
 			<!-- <a href="https://github.com/bcandullo/bcandullo.com/tree/master" target="_blank" rel="nofollow" class="visible-md github-link">
 				<i class="icon-github"></i>
-				<span>View Source on Github</span>
+				<span>More on Github</span>
 			</a> -->
 
 		</section><!-- /.projects -->
@@ -357,13 +361,28 @@
 		window.B = window.B || {} // bootsrap
 	</script>
 
-	<!-- compress all this shit -->
+	<!-- compress all this shit
 	<script src="js/utils.js"></script>
 	<script src="js/destroyer.js"></script>
 	<script src="../build/js/browser.js"></script>
 	<script src="js/images.js"></script>
 	<script src="js/contact.js"></script>
 	<script src="js/app.js"></script>
+	 -->
+
+	<script src="../build/js/build.js"></script>
+
+	<script>
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-48335266-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 </body>
 </html>

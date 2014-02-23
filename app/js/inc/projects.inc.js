@@ -1,8 +1,7 @@
 var projects = {
 	"albm": {
 		"images": {
-			"image_0": "0-large.jpg",
-			"image_1": "1-large.jpg"
+			"image_0": "0-large.jpg"
 		}
 	},
 	"recbob": {
@@ -16,7 +15,10 @@ var projects = {
 	"beach": {
 		"images": {
 			"image_0": "0-large.jpg",
-			"image_1": "1-large.jpg"
+			"image_1": "1-large.jpg",
+			"image_2": "2-large.jpg",
+			"image_3": "3-large.jpg",
+			"image_4": "4-large.jpg"
 		}
 	}
 };

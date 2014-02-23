@@ -21,7 +21,7 @@ window.B.images = (function (utils) {
 			window.B.browser.init();
 		}
 		else {
-			throw new Error('browser did not init');
+			throw('browser did not init');
 		}
 
 	}

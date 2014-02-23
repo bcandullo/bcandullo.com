@@ -13,11 +13,12 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'build/js/build.js': [
-                        'app/js/app.js',
                         'app/js/utils.js',
+                        'app/js/destroyer.js',
+                        'build/js/browser.js',
+                        'app/js/images.js',
                         'app/js/contact.js',
-                        'app/js/browser.js',
-                        'app/js/destroyer.js'
+                        'app/js/app.js'
                     ]
                 }
             }
@@ -86,9 +87,8 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'app/img/',
-                        src: ['**/*.jpg'],
-                        dest: 'build/img/',
-                        ext: '.jpg'
+                        src: ['**/*.{jpg,png}'],
+                        dest: 'build/img/'
                     }
                 ]
             }
@@ -115,11 +115,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    //grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-includes');
     
     // register tasks for envs
     grunt.registerTask('dev', [ 'includes' , 'less:dev', 'watch' ]);
-    grunt.registerTask('prod', [ 'includes', 'less:prod', 'htmlmin', 'uglify' ]);
+    grunt.registerTask('prod', [ 'imagemin', 'includes', 'less:prod', 'htmlmin', 'uglify' ]);
 
 };

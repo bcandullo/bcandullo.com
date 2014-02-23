@@ -3,7 +3,7 @@
   "version": "5.0.1",
   "repository": {
     "type": "git",
-    "url": ":fill/this/out/sucka"
+    "url": "https://github.com/bcandullo/bcandullo.com"
   },
   "devDependencies": {
     "grunt": "latest",
@@ -11,7 +11,7 @@
     "grunt-contrib-htmlmin": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-contrib-less": "latest",
-    "grunt-contrib-imagemin": "~0.5.0",
+    "grunt-contrib-imagemin": "^0.3.0",
     "grunt-includes": "~0.4.2"
   }
 }

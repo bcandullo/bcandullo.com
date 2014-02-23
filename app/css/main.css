@@ -1163,7 +1163,10 @@ table {
     line-height: 120%;
   }
   body .intro .btn {
+    width: 100%;
     margin-top: -20px;
+    left: 0;
+    margin-left: 0;
   }
   body .section-header {
     text-align: center;

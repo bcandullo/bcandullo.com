@@ -101,6 +101,8 @@ window.B.destroyer = (function (utils) {
 			c += 1;
 		}, speed);
 
+		canvas.style.display = 'block';
+		
     }
 
 	function bindEvents (skipDraw) {
@@ -377,8 +379,8 @@ window.B.destroyer = (function (utils) {
 		
 		this.draw = function () {
 			
-			var base = (Math.abs(boom) * this.velocity.z * 5) >> 0,
-				gb = (30 + (base + this.targetPos.z * 2) >> 0);
+			var base = (Math.abs(boom) * this.velocity.z * 10) >> 0,
+				gb = (30 + (base + this.targetPos.z * 2 + boom) >> 0);
 
 			ctx.fillStyle = 'rgb(' + (30 + (base + this.targetPos.z * 10) >> 0)
 							+ ', ' + gb
