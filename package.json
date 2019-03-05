@@ -6,12 +6,16 @@
     "url": "https://github.com/bcandullo/bcandullo.com"
   },
   "devDependencies": {
+    "bower": "^1.8.8",
     "grunt": "latest",
-    "grunt-contrib-uglify": "latest",
     "grunt-contrib-htmlmin": "latest",
-    "grunt-contrib-watch": "latest",
-    "grunt-contrib-less": "latest",
     "grunt-contrib-imagemin": "^0.3.0",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
     "grunt-includes": "~0.4.2"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
   }
 }
